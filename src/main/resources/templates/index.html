@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Startsida</title>
+
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/custom.css">
+</head>
+<body class="text-center">
+
+<div class="container">
+    <h1>Välkommen till Groceries Store!</h1>
+
+    <a class="btn btn-outline-primary" th:href="@{index}">Hem</a>
+    <a class="btn btn-outline-primary" th:href="@{products}">Produkter</a>
+    <a class="btn btn-outline-primary" th:href="@{visitors}">Maträtter</a>
+</div>
+
+</body>
+</html>
