@@ -7,6 +7,7 @@ import se.groceriesstore.demo.models.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 public class ProductService {
 
@@ -28,15 +29,7 @@ public class ProductService {
 
         return products;
     }
-
-    public List<Bread> getBreads(){
-        List<Bread> breads = new ArrayList<>();
-        breads.add(new Bread("Ljust bröd",20));
-        breads.add(new Bread("Grovt bröd",30));
-        breads.add(new Bread("Knäckebröd",10));
-        return breads;
-    }
-
+    
     public List<Drink> getDrinks(){
         List<Drink> drinks = new ArrayList<>();
         drinks.add(new Drink("Cocacola",15));
@@ -59,6 +52,14 @@ public class ProductService {
         vegetables.add(new Vegetable("Spenat",19));
         vegetables.add(new Vegetable("Broccoli",9));
         return vegetables;
+    }
+
+    public List<Bread> getBreads(){
+        List<Bread> breads = new ArrayList<>();
+        breads.add(new Bread("Ljust bröd",20));
+        breads.add(new Bread("Grovt bröd",30));
+        breads.add(new Bread("Knäckebröd",10));
+        return breads;
     }
 
 }

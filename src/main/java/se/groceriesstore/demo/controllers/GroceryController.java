@@ -22,5 +22,30 @@ public class GroceryController {
         model.addAttribute("products", productService.getProducts());
         return "products";
     }
+
+    @RequestMapping("breads")
+    public String showBreads(Model model){
+        model.addAttribute("breads", productService.getBreads());
+        return "breads";
+    }
+
+    @RequestMapping("drinks")
+    public String showDrinks(Model model){
+        model.addAttribute("drinks", productService.getDrinks());
+        return "drinks";
+    }
+
+    @RequestMapping("fruits")
+    public String showFruits(Model model){
+        model.addAttribute("fruits", productService.getFruits());
+        return "fruits";
+    }
+
+    @RequestMapping("vegetables")
+    public String showVegetables(Model model){
+        model.addAttribute("vegetables", productService.getVegetables());
+        return "vegetables";
+    }
+
 }
 
