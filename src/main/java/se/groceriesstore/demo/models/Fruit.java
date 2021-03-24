@@ -1,14 +1,14 @@
 package se.groceriesstore.demo.models;
 
-public class Bread extends Product{
+public class Fruit extends Product{
     private String name;
     private int price;
 
-    public Bread() {
+    public Fruit(){
         super();
     }
 
-    public Bread(String name, int price) {
+    public Fruit(String name, int price){
         this.name = name;
         this.price = price;
     }

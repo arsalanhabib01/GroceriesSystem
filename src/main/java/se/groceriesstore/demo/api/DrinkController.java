@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import se.groceriesstore.demo.models.Drink;
-import se.groceriesstore.demo.services.DrinkService;
+import se.groceriesstore.demo.services.ProductService;
 
 
 import java.util.List;
@@ -13,10 +13,10 @@ import java.util.List;
 public class DrinkController {
 
     @Autowired
-    DrinkService drinkService;
+    ProductService productService;
 
     @GetMapping("/drinkdata")
     public List<Drink> getDrinks(){
-        return drinkService.getDrinks();
+        return productService.getDrinks();
     }
 }
