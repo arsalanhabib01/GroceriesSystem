@@ -3,6 +3,7 @@ package se.groceriesstore.demo.dao;
 import org.springframework.stereotype.Repository;
 import se.groceriesstore.demo.models.Bread;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,5 +32,16 @@ public class BreadsDAO {
                 .filter(bread -> bread.getId()
                         .equals(id))
                         .findFirst();
+    }
+
+    public int deleteBread(UUID id) {
+        Optional<Bread> optionalBread = findBreadById(id);
+        if(optionalBread.isEmpty()) {
+            return 0;
+        }
+
+        DB.remove(optionalBread.get());
+        return 1;
+
     }
 }

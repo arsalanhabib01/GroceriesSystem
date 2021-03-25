@@ -81,4 +81,9 @@ public class ProductService {
     public Optional<Bread> getBreadById(UUID id) {
         return breadsDAO.findBreadById(id);
     }
+
+    public int deleteBread (UUID id ) {
+        breadsDAO.deleteBread(id);
+        return 0;
+    }
 }

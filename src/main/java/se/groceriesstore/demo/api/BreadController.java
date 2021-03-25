@@ -20,14 +20,20 @@ public class BreadController {
         return productService.getAllBreads();
     }
 
-    @PostMapping
-    public void addBread(@RequestBody Bread bread) {
-        productService.addBread(bread);
-    }
 
     @GetMapping("/{id}")
     public Bread getBreadByID(@PathVariable("id") UUID id ) {
         return productService.getBreadById(id)
                 .orElse(null);
+    }
+
+    @PostMapping
+    public void addBread(@RequestBody Bread bread) {
+        productService.addBread(bread);
+    }
+
+    @DeleteMapping("/{id}")
+    public int deleteBread(@PathVariable("id") UUID id) {
+        return productService.deleteBread(id);
     }
 }
