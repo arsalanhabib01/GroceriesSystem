@@ -25,7 +25,7 @@ public class GroceryController {
 
     @RequestMapping("breads")
     public String showBreads(Model model){
-        model.addAttribute("breads", productService.getBreads());
+        model.addAttribute("breads", productService.getAllBreads());
         return "breads";
     }
 
