@@ -32,7 +32,7 @@ public class ProductService {
     
     public List<Drink> getDrinks(){
         List<Drink> drinks = new ArrayList<>();
-        drinks.add(new Drink("Cocacola",15));
+        drinks.add(new Drink("Cola",15));
         drinks.add(new Drink("Sprite",18));
         drinks.add(new Drink("Pepsi",20));
         return drinks;
@@ -41,7 +41,7 @@ public class ProductService {
     public List<Fruit> getFruits(){
         List<Fruit> fruits = new ArrayList<>();
         fruits.add(new Fruit("Äpple",12));
-        fruits.add(new Fruit("Orange",23));
+        fruits.add(new Fruit("Aplesin",23));
         fruits.add(new Fruit("Mango",35));
         return fruits;
     }

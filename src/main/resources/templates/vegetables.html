@@ -5,11 +5,29 @@
     <title>Grönsakers</title>
 
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="/custom.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
 </head>
 
 <body class="text-center">
-<div class="container">
+<h1>Välkommen till Groceries Store!</h1>
+    <div class="container">
+        <a class="btn" th:href="@{index}">Hem</a>
+        <a class="active btn disabled" th:href="@{products}">Produkter</a>
+        <a class="btn" th:href="@{maträtters}">Maträtter</a>
+        <a class="btn btn-group-toggle courier" th:href="@{courier}" >
+            <img th:src="@{/image/courier.jpg }" th:height="50" th:width="50"> </a>
+        <a class="btn cart" th:href="@{addcart}" >
+            <img th:src="@{/image/add_cart.jpg }" th:height="50" th:width="50"> </a>
+        <a class="btn-danger loging" th:href="@{login}">Logga In</a>
+    </div>
+
+    <div class="card-columns">
+        <a class="btn" th:href="@{breads}">Bröd</a>
+        <a class="btn" th:href="@{drinks}">Dryker</a>
+        <a class="btn" th:href="@{fruits}">Frukter</a>
+        <a class="active btn disabled" th:href="@{vegetables}">Grönsakers</a>
+    </div>
+
     <h1 class="vegetables">Grönsakers</h1>
     <table class="table table-hover">
         <thead>
@@ -28,7 +46,6 @@
 
     <a class="btn btn-dark" th:href="@{index}">Tillbaka till Startsidan</a>
 
-</div>
 
 </body>
 </html>
