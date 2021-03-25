@@ -1,7 +1,7 @@
 package se.groceriesstore.demo.services;
 
-import org.springframework.beans.factory.xml.BeanDefinitionDocumentReader;
 import org.springframework.stereotype.Service;
+import se.groceriesstore.demo.dao.BreadsDAO;
 import se.groceriesstore.demo.models.*;
 
 import java.util.ArrayList;
@@ -10,6 +10,12 @@ import java.util.List;
 
 @Service
 public class ProductService {
+
+    private final BreadsDAO breadsDAO;
+
+    public ProductService(BreadsDAO breadsDAO) {
+        this.breadsDAO = breadsDAO;
+    }
 
     public List<Product> getProducts(){
         List<Product> products = new ArrayList<>();
@@ -56,10 +62,13 @@ public class ProductService {
 
     public List<Bread> getBreads(){
         List<Bread> breads = new ArrayList<>();
-        breads.add(new Bread("Ljust bröd",20));
-        breads.add(new Bread("Grovt bröd",30));
-        breads.add(new Bread("Knäckebröd",10));
+       // breads.add(new Bread("Ljust bröd",20));
+       // breads.add(new Bread("Grovt bröd",30));
+       // breads.add(new Bread("Knäckebröd",10));
         return breads;
     }
 
+    public List<Bread> getAllBreads() {
+        return breadsDAO.getAllBreads();
+    }
 }

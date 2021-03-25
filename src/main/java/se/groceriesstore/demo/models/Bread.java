@@ -1,5 +1,7 @@
 package se.groceriesstore.demo.models;
 
+import java.util.UUID;
+
 public class Bread extends Product{
     private String name;
     private int price;
@@ -8,7 +10,7 @@ public class Bread extends Product{
         super();
     }
 
-    public Bread(String name, int price) {
+    public Bread(UUID id, String name, int price) {
         this.name = name;
         this.price = price;
     }
