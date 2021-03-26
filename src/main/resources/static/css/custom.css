@@ -26,17 +26,33 @@
     color: white;
 }
 
+#product-category {
+    display: grid;
+    grid-column: 1;
+    max-width: 50vh;
+}
+
+#midcard  {
+
+}
+
+#cartcard {
+
+}
+
+
 .card-columns {
-    background-color: grey;
-    margin-right: 112px;
-    margin-left: 113px;
+     /*margin-right: 112px;
+     margin-left: 113px;*/
+   /* padding-bottom: 200px;*/
+    display: flex;
     overflow: hidden;
 }
 
 .card-columns a{
     color: #f2f2f2;
-    margin: 20px;
-    padding: 40px 20px;
+   /* margin: 20px;
+    padding: 40px 20px;*/
     text-decoration: none;
     font-size: 20px;
 }

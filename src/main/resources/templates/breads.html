@@ -11,6 +11,7 @@
 <body class="text-center">
 <h1>Välkommen till Groceries Store!</h1>
 <div class="container">
+
     <a class="btn" th:href="@{index}">Hem</a>
     <a class="active btn disabled" th:href="@{products}">Produkter</a>
     <a class="btn" th:href="@{maträtters}">Maträtter</a>
@@ -22,28 +23,48 @@
 </div>
 
 <div class="card-columns">
-    <a class="active btn disabled" th:href="@{breads}">Bröd</a>
-    <a class="btn" th:href="@{drinks}">Dryker</a>
-    <a class="btn" th:href="@{fruits}">Frukter</a>
-    <a class="btn" th:href="@{vegetables}">Grönsakers</a>
+    <div class="card" id="product-category">
+        <a class="active btn disabled" th:href="@{breads}">Bröd</a>
+        <a class="btn" th:href="@{drinks}">Dryker</a>
+        <a class="btn" th:href="@{fruits}">Frukter</a>
+        <a class="btn" th:href="@{vegetables}">Grönsakers</a>
+    </div>
+
+    <div class="card" id="midcard">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Bröd Namn</th>
+                <th>Bröd Pris</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bread : ${breads}">
+                <td th:text="${bread.name}"></td>
+                <td th:text="${bread.price}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="card" id="cartcard">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Bröd Namn</th>
+                <th>Bröd Pris</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bread : ${breads}">
+                <td th:text="${bread.name}"></td>
+                <td th:text="${bread.price}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-    <h1 class="breads">Bröd</h1>
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>Bröd Namn</th>
-            <th>Bröd Pris</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="bread : ${breads}">
-            <td th:text="${bread.name}"></td>
-            <td th:text="${bread.price}"></td>
-        </tr>
-        </tbody>
-    </table>
-
     <a class="btn btn-dark" th:href="@{index}">Tillbaka till Startsidan</a>
 
 
