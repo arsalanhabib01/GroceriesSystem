@@ -46,6 +46,11 @@ public class GroceryController {
         model.addAttribute("vegetables", productService.getVegetables());
         return "vegetables";
     }
+    @RequestMapping("login")
+    public String showlogain(Model model){
+        model.addAttribute("login", productService.getLogin());
+        return "login";
+    }
 
 }
 
