@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar">
+    <a class="btn" th:href="@{index}">Hem</a>
+    <a class="active btn disabled" th:href="@{products}">Produkter</a>
+    <a class="btn" th:href="@{maträtters}">Maträtter</a>
+    <a class="btn btn-group-toggle courier" th:href="@{courier}" >
+        <img th:src="@{/image/courier.jpg }" th:height="50" th:width="50"> </a>
+    <a class="btn cart" th:href="@{addcart}" >
+        <img th:src="@{/image/add_cart.jpg }" th:height="50" th:width="50"> </a>
+    <a class="btn-danger loging" th:href="@{login}">Logga In</a>
+
+</nav>
+</body>
+</html>
