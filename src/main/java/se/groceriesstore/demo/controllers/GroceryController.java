@@ -20,6 +20,10 @@ public class GroceryController {
     @RequestMapping("products")
     public String showProducts(Model model){
         model.addAttribute("products", productService.getProducts());
+        model.addAttribute("breads", productService.getBreads());
+        model.addAttribute("drinks", productService.getDrinks());
+        model.addAttribute("fruits", productService.getFruits());
+        model.addAttribute("vegetables", productService.getVegetables());
         return "products";
     }
 

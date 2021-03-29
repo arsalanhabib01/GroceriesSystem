@@ -14,11 +14,9 @@
     <div th:insert="fragments/navbar :: navbar"></div>
 </div>
 
-
     <div class="card-columns">
         <div class="card" id="product-category">
-            <div th:insert="fragments/slidemenu::slidemenu">
-
+            <div th:replace="fragments/slidemenu::slidemenu">
             </div>
     </div>
 
@@ -63,6 +61,6 @@
     </div>
     <a class="btn btn-dark" th:href="@{index}">Tillbaka till Startsidan</a>
 
-
+    <script src="/js/main.js"></script>
 </body>
 </html>
