@@ -16,10 +16,9 @@
 
     <div class="card-columns">
         <div class="card" id="product-category">
-        <a class="btn" th:href="@{breads}">Bröd</a>
-        <a class="btn" th:href="@{drinks}">Dryker</a>
-        <a class="active btn disabled" th:href="@{fruits}">Frukter</a>
-        <a class="btn" th:href="@{vegetables}">Grönsakers</a>
+            <div th:insert="fragments/slidemenu::slidemenu">
+
+            </div>
   </div>
 
         <div class="card" id="midcard">
