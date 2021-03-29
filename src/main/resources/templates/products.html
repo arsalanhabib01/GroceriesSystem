@@ -12,15 +12,9 @@
 
 <body class="text-center">
     <h1>Välkommen till Groceries Store!</h1>
+
 <div class="container">
-    <a class="btn" th:href="@{index}">Hem</a>
-    <a class="active btn disabled" th:href="@{products}">Produkter</a>
-    <a class="btn" th:href="@{maträtters}">Maträtter</a>
-    <a class="btn btn-group-toggle courier" th:href="@{courier}" >
-        <img th:src="@{/image/courier.jpg }" th:height="50" th:width="50"> </a>
-    <a class="btn cart" th:href="@{addcart}" >
-        <img th:src="@{/image/add_cart.jpg }" th:height="50" th:width="50"> </a>
-    <a class="btn-danger loging" th:href="@{login}">Logga In</a>
+<div th:insert="fragments/navbar :: navbar"> </div>
 </div>
 
 <div class="card-columns">
