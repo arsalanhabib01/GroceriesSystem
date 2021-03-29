@@ -41,6 +41,13 @@
 
 }
 
+.minus-button {
+    float: left;
+}
+
+.plus-button {
+    float: right;
+}
 
 .card-columns {
     display: flex;
