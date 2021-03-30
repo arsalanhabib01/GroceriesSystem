@@ -24,8 +24,8 @@ public class BreadDTO {
     public BreadDTO() {
     }
 
-    public BreadDTO(Integer id, int price) {
-        this.id = id;
+    public BreadDTO(String name, int price) {
+        this.name = name;
         this.price = price;
     }
 

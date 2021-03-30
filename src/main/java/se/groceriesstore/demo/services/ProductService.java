@@ -89,6 +89,6 @@ public class ProductService {
     }
 
     private BreadDTO mapFromBread (Bread bread) {
-        return new BreadDTO(bread.getId(), bread.getPrice());
+        return new BreadDTO(bread.getName(), bread.getPrice());
     }
 }
