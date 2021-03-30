@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.UUID;
 
 public class Bread extends Product{
-    private UUID id;
+    private Integer id;
     private String name;
     private int price;
 
@@ -14,7 +14,7 @@ public class Bread extends Product{
     }
 
 
-    public Bread(@JsonProperty("id") UUID id,
+    public Bread(@JsonProperty("id") Integer id,
                  @JsonProperty("name") String name,
                  @JsonProperty("price") int price) {
         this.id = id;
@@ -22,7 +22,7 @@ public class Bread extends Product{
         this.price = price;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 

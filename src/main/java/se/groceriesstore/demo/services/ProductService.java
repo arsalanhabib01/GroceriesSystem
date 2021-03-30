@@ -3,6 +3,7 @@ package se.groceriesstore.demo.services;
 import org.springframework.stereotype.Service;
 import se.groceriesstore.demo.dao.BreadsDAO;
 import se.groceriesstore.demo.models.*;
+import se.groceriesstore.demo.models.dto.BreadDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,16 +75,20 @@ public class ProductService {
         return breadsDAO.getAllBreads();
     }
 
-    public void addBread(Bread bread ) {
-         breadsDAO.addBread(bread);
+    public void addBread(Bread bread) {
+         breadsDAO.addBread(mapFromBread(bread));
     }
 
-    public Optional<Bread> getBreadById(UUID id) {
+    public Optional<Bread> getBreadById(Integer id) {
         return breadsDAO.findBreadById(id);
     }
 
-    public int deleteBread (UUID id ) {
+    public int deleteBread (Integer id ) {
         breadsDAO.deleteBread(id);
         return 0;
+    }
+
+    private BreadDTO mapFromBread (Bread bread) {
+        return new BreadDTO(bread.getId(), bread.getPrice());
     }
 }

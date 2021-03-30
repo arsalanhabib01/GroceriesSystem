@@ -22,7 +22,7 @@ public class BreadController {
 
 
     @GetMapping("/{id}")
-    public Bread getBreadByID(@PathVariable("id") UUID id ) {
+    public Bread getBreadByID(@PathVariable("id") Integer id ) {
         return productService.getBreadById(id)
                 .orElse(null);
     }
@@ -33,7 +33,7 @@ public class BreadController {
     }
 
     @DeleteMapping("/{id}")
-    public int deleteBread(@PathVariable("id") UUID id) {
+    public int deleteBread(@PathVariable("id") Integer id) {
         return productService.deleteBread(id);
     }
 }
