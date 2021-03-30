@@ -1,4 +1,6 @@
 package se.groceriesstore.demo.repository;
 
-public interface foodRepository extends CrudRepository{
+import org.springframework.data.repository.CrudRepository;
+
+public interface foodRepository extends CrudRepository {
 }

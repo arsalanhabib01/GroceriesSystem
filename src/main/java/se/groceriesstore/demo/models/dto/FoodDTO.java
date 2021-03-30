@@ -1,14 +1,16 @@
 package se.groceriesstore.demo.models.dto;
 
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table (name = "products")
+@Table(name = "products")
 public class FoodDTO {
 
     public FoodDTO() {
     }
 
+    @Id
     public UUID getId() {
         return id;
     }
@@ -32,4 +34,9 @@ public class FoodDTO {
     private UUID id;
     private String type;
     private String name;
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
 }
