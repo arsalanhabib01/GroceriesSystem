@@ -24,7 +24,7 @@ public class ProductService {
         List<Product> products = new ArrayList<>();
 
      //   for(int i= 0; i < getBreads().size(); i++)
-       for(Bread breads: getBreads())
+       for(Bread breads: getAllBreads())
             products.add(breads);
 
         for (Drink drinks: getDrinks())
@@ -63,32 +63,36 @@ public class ProductService {
         return vegetables;
     }
 
-    public List<Bread> getBreads(){
-        List<Bread> breads = new ArrayList<>();
-       // breads.add(new Bread("Ljust bröd",20));
-       // breads.add(new Bread("Grovt bröd",30));
-       // breads.add(new Bread("Knäckebröd",10));
-        return breads;
-    }
-
     public List<Bread> getAllBreads() {
-        return breadsDAO.getAllBreads();
+        List<Bread> breads = new ArrayList<>();
+        for( BreadDTO breadDTO : breadsDAO.getAllBreads()) {
+            Bread bread = mapToBread(breadDTO);
+            breads.add(bread);
+        }
+        return breads;
     }
 
     public void addBread(Bread bread) {
          breadsDAO.addBread(mapFromBread(bread));
     }
 
-    public Optional<Bread> getBreadById(Integer id) {
-        return breadsDAO.findBreadById(id);
+    public Bread getBreadById(Integer id) {
+        if (breadsDAO.findBreadById(id).isPresent()) {
+            return mapToBread(breadsDAO.findBreadById(id).get());
+        }
+        return null;
     }
 
-    public int deleteBread (Integer id ) {
+    public void deleteBread (Integer id ) {
         breadsDAO.deleteBread(id);
-        return 0;
     }
 
     private BreadDTO mapFromBread (Bread bread) {
         return new BreadDTO(bread.getName(), bread.getPrice());
     }
+
+    private Bread mapToBread (BreadDTO breadDTO) {
+        return new Bread(breadDTO.getId(), breadDTO.getName(), breadDTO.getPrice());
+    }
 }
+

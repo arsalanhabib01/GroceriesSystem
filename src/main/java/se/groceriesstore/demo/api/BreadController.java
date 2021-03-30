@@ -15,16 +15,14 @@ public class BreadController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/breaddata")
+    @GetMapping()
     public List<Bread> getAllBreads(){
         return productService.getAllBreads();
     }
 
-
     @GetMapping("/{id}")
     public Bread getBreadByID(@PathVariable("id") Integer id ) {
-        return productService.getBreadById(id)
-                .orElse(null);
+        return productService.getBreadById(id);
     }
 
     @PostMapping
@@ -33,7 +31,7 @@ public class BreadController {
     }
 
     @DeleteMapping("/{id}")
-    public int deleteBread(@PathVariable("id") Integer id) {
-        return productService.deleteBread(id);
+    public void deleteBread(@PathVariable("id") Integer id) {
+       productService.deleteBread(id);
     }
 }
