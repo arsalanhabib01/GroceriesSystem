@@ -20,7 +20,7 @@ public class GroceryController {
     @RequestMapping("products")
     public String showProducts(Model model){
         model.addAttribute("products", productService.getProducts());
-        model.addAttribute("breads", productService.getBreads());
+        model.addAttribute("breads", productService.getAllBreads());
         model.addAttribute("drinks", productService.getDrinks());
         model.addAttribute("fruits", productService.getFruits());
         model.addAttribute("vegetables", productService.getVegetables());
@@ -50,11 +50,11 @@ public class GroceryController {
         model.addAttribute("vegetables", productService.getVegetables());
         return "vegetables";
     }
-    @RequestMapping("login")
+  /*   @RequestMapping("login")
     public String showlogain(Model model){
         model.addAttribute("login", productService.getLogin());
         return "login";
-    }
+    }*/
 
 }
 
