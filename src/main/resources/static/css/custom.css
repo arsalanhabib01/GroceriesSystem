@@ -7,17 +7,18 @@
 /* Style the links inside the navigation bar */
 .container a {
     float: left;
-    color: #f2f2f2;
+    background-color: #444444;
+    color: #ddd5d5;
     text-align: center;
-    padding: 14px 16px;
+    padding: 16px 18px;
     text-decoration: none;
     font-size: 17px;
 }
 
 /* Change the color of links on hover */
 .container a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: black;
+    color: white;
 }
 
 /* Add a color to the active/current link */
@@ -100,18 +101,36 @@
     border: none;
     text-align: left;
     outline: none;
-    font-size: 15px;
+    font-size: 20px;
     transition: 0.4s;
 }
 
 
-.active, .accordion:hover {
+.accordion.active, .accordion:hover {
     background-color: #ccc;
+    color: white;
+    text-transform: uppercase;
 }
 
 .panel {
-    padding: 0 18px;
+    padding: 0 16px;
     display: none;
     background-color: white;
     overflow: hidden;
+    text-align: left;
+    font-size: medium;
+}
+
+a.sub-btn {
+
+}
+
+a.sub-btn.active, a.sub-btn:hover{
+    background-color: #848491;
+    color: white;
+    text-transform: uppercase;
+}
+
+a.btn-danger{
+    color: red;
 }

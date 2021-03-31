@@ -9,7 +9,8 @@
 <button class="accordion">Bröd</button>
 <div class="panel">
     <tr th:each="bread : ${breads}">
-        <td th:text="${bread.name}"></td>
+        <a class="sub-btn" th:href="@{breads}">
+            <td th:text="${bread.name}"></td> </a>
         <br>
     </tr>
 
@@ -18,7 +19,8 @@
 <button class="accordion">Drycker</button>
 <div class="panel">
   <tr th:each="drink : ${drinks}">
-        <td th:text="${drink.name}"></td>
+      <a class="sub-btn" th:href="@{drinks}">
+        <td th:text="${drink.name}"></td> </a>
     <br>
     </tr>
 </div>
@@ -26,7 +28,8 @@
 <button class="accordion">Frukter</button>
 <div class="panel">
     <tr th:each="fruit : ${fruits}">
-        <td th:text="${fruit.name}"></td>
+        <a class="sub-btn" th:href="@{fruits}">
+        <td th:text="${fruit.name}"></td> </a>
     <br>
     </tr>
 </div>
@@ -34,7 +37,8 @@
 <button class="accordion">Grönsakers</button>
 <div class="panel">
     <tr th:each="vegetable : ${vegetables}">
-        <td th:text="${vegetable.name}"></td>
+        <a class="sub-btn" th:href="@{vegetables}">
+            <td th:text="${vegetable.name}"></td> </a>
         <br>
     </tr>
 </div>
