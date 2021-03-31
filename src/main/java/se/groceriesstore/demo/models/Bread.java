@@ -21,9 +21,6 @@ public class Bread extends Product{
         this.price = price;
     }
 
-    public Bread(String name, int price) {
-    }
-
     public Integer getId() {
         return id;
     }

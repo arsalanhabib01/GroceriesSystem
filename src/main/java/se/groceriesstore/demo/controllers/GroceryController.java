@@ -23,7 +23,7 @@ public class GroceryController {
         model.addAttribute("breads", productService.getAllBreads());
         model.addAttribute("drinks", productService.getAllDrinks());
         model.addAttribute("fruits", productService.getFruits());
-        model.addAttribute("vegetables", productService.getVegetables());
+        model.addAttribute("vegetables", productService.getAllVegetables());
         return "products";
     }
 
@@ -47,7 +47,7 @@ public class GroceryController {
 
     @RequestMapping("vegetables")
     public String showVegetables(Model model){
-        model.addAttribute("vegetables", productService.getVegetables());
+        model.addAttribute("vegetables", productService.getAllVegetables());
         return "vegetables";
     }
   /*   @RequestMapping("login")
