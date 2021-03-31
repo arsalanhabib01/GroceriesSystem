@@ -2,7 +2,6 @@ package se.groceriesstore.demo.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.UUID;
 
 public class Bread extends Product{
     private Integer id;
@@ -34,18 +33,9 @@ public class Bread extends Product{
         return name;
     }
 
-//    @Override
-  //  public void setName(String name) {
-    //    this.name = name;
-   // }
-
     @Override
     public int getPrice() {
         return price;
     }
 
-    //@Override
-    //public void setPrice(int price) {
-    //    this.price = price;
-    //}
 }

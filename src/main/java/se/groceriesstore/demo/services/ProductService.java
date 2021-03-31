@@ -2,8 +2,10 @@ package se.groceriesstore.demo.services;
 
 import org.springframework.stereotype.Service;
 import se.groceriesstore.demo.dao.BreadsDAO;
+import se.groceriesstore.demo.dao.DrinksDAO;
 import se.groceriesstore.demo.models.*;
 import se.groceriesstore.demo.models.dto.BreadDTO;
+import se.groceriesstore.demo.models.dto.DrinkDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +17,11 @@ import java.util.UUID;
 public class ProductService {
 
     private final BreadsDAO breadsDAO;
+    private final DrinksDAO drinksDAO;
 
-    public ProductService(BreadsDAO breadsDAO) {
+    public ProductService(BreadsDAO breadsDAO, DrinksDAO drinksDAO) {
         this.breadsDAO = breadsDAO;
+        this.drinksDAO = drinksDAO;
     }
 
     public List<Product> getProducts(){
@@ -27,7 +31,7 @@ public class ProductService {
        for(Bread breads: getAllBreads())
             products.add(breads);
 
-        for (Drink drinks: getDrinks())
+        for (Drink drinks: getAllDrinks())
             products.add(drinks);
 
         for (Fruit fruits: getFruits())
@@ -37,14 +41,6 @@ public class ProductService {
             products.add(vegetables);
 
         return products;
-    }
-    
-    public List<Drink> getDrinks(){
-        List<Drink> drinks = new ArrayList<>();
-        drinks.add(new Drink("Cocacola",15));
-        drinks.add(new Drink("Sprite",18));
-        drinks.add(new Drink("Pepsi",20));
-        return drinks;
     }
 
     public List<Fruit> getFruits(){
@@ -61,6 +57,39 @@ public class ProductService {
         vegetables.add(new Vegetable("Spenat",19));
         vegetables.add(new Vegetable("Broccoli",9));
         return vegetables;
+    }
+
+    public List<Drink> getAllDrinks(){
+        List<Drink> drinks = new ArrayList<>();
+        for (DrinkDTO drinkDTO : drinksDAO.getAllDrinks()){
+            Drink drink = mapToDrink(drinkDTO);
+            drinks.add(drink);
+        }
+        return drinks;
+    }
+
+    public void addDrink(Drink drink) {
+        drinksDAO.addDrink(mapFromDrink(drink));
+    }
+
+    public Drink getDrinkById(Integer id) {
+        if (drinksDAO.findDrinkById(id).isPresent()) {
+            return mapToDrink(drinksDAO.findDrinkById(id).get());
+        }
+        return null;
+    }
+
+    public void deleteDrink (Integer id ) {
+        drinksDAO.deleteDrink(id);
+    }
+
+
+    private DrinkDTO mapFromDrink (Drink drink) {
+        return new DrinkDTO(drink.getName(), drink.getPrice());
+    }
+
+    private Drink mapToDrink (DrinkDTO drinkDTO) {
+        return new Drink(drinkDTO.getId(), drinkDTO.getName(), drinkDTO.getPrice());
     }
 
     public List<Bread> getAllBreads() {

@@ -21,7 +21,7 @@ public class GroceryController {
     public String showProducts(Model model){
         model.addAttribute("products", productService.getProducts());
         model.addAttribute("breads", productService.getAllBreads());
-        model.addAttribute("drinks", productService.getDrinks());
+        model.addAttribute("drinks", productService.getAllDrinks());
         model.addAttribute("fruits", productService.getFruits());
         model.addAttribute("vegetables", productService.getVegetables());
         return "products";
@@ -35,7 +35,7 @@ public class GroceryController {
 
     @RequestMapping("drinks")
     public String showDrinks(Model model){
-        model.addAttribute("drinks", productService.getDrinks());
+        model.addAttribute("drinks", productService.getAllDrinks());
         return "drinks";
     }
 

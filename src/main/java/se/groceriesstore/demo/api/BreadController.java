@@ -6,7 +6,6 @@ import se.groceriesstore.demo.models.Bread;
 import se.groceriesstore.demo.services.ProductService;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/breads")

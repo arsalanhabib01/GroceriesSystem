@@ -3,8 +3,8 @@ package se.groceriesstore.demo.models.dto;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "breads")
-public class BreadDTO {
+@Table(name = "drinks")
+public class DrinkDTO {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,17 +13,17 @@ public class BreadDTO {
     private String name;
 
 
-    public BreadDTO(Integer id, int price, String name) {
+    public DrinkDTO(Integer id, int price, String name) {
         this.id = id;
         this.price = price;
         this.name = name;
     }
 
 
-    public BreadDTO() {
+    public DrinkDTO() {
     }
 
-    public BreadDTO(String name, int price) {
+    public DrinkDTO(String name, int price) {
         this.name = name;
         this.price = price;
     }
