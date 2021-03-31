@@ -11,6 +11,7 @@
     <tr th:each="bread : ${breads}">
         <a class="sub-btn" th:href="@{breads}">
             <td th:text="${bread.name}"></td> </a>
+        <span class="line"></span>
         <br>
     </tr>
 
@@ -21,6 +22,7 @@
   <tr th:each="drink : ${drinks}">
       <a class="sub-btn" th:href="@{drinks}">
         <td th:text="${drink.name}"></td> </a>
+      <span class="line"></span>
     <br>
     </tr>
 </div>
@@ -30,6 +32,7 @@
     <tr th:each="fruit : ${fruits}">
         <a class="sub-btn" th:href="@{fruits}">
         <td th:text="${fruit.name}"></td> </a>
+        <span class="line"></span>
     <br>
     </tr>
 </div>
@@ -39,6 +42,7 @@
     <tr th:each="vegetable : ${vegetables}">
         <a class="sub-btn" th:href="@{vegetables}">
             <td th:text="${vegetable.name}"></td> </a>
+        <span class="line"></span>
         <br>
     </tr>
 </div>

@@ -134,3 +134,8 @@ a.sub-btn.active, a.sub-btn:hover{
 a.btn-danger{
     color: red;
 }
+
+.line{
+    border-bottom: 2px solid #ccc;
+    display: block;
+}
