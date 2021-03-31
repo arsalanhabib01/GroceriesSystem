@@ -1,21 +1,37 @@
 package se.groceriesstore.demo.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import se.groceriesstore.demo.models.Fruit;
 import se.groceriesstore.demo.services.ProductService;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/api/fruits")
 public class FruitController {
 
     @Autowired
     ProductService productService;
 
-    @GetMapping("/fruitdata")
-    public List<Fruit> getFruits(){
-        return productService.getFruits();
+    @GetMapping()
+    public List<Fruit> getAllFruits(){
+        return productService.getAllFruits();
     }
+
+    @GetMapping("/{id}")
+    public Fruit getFruitByID(@PathVariable("id") Integer id ) {
+        return productService.getFruitById(id);
+    }
+
+    @PostMapping
+    public void addFruit(@RequestBody Fruit fruit) {
+        productService.addFruit(fruit);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteFruit(@PathVariable("id") Integer id) {
+        productService.deleteFruit(id);
+    }
+
 }

@@ -1,6 +1,9 @@
 package se.groceriesstore.demo.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Fruit extends Product{
+    private Integer id;
     private String name;
     private int price;
 
@@ -8,9 +11,15 @@ public class Fruit extends Product{
         super();
     }
 
-    public Fruit(String name, int price){
+    public Fruit(@JsonProperty("id") Integer id,
+                 @JsonProperty("name") String name,
+                 @JsonProperty("price") int price){
         this.name = name;
         this.price = price;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     @Override
@@ -19,17 +28,9 @@ public class Fruit extends Product{
     }
 
     @Override
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
     public int getPrice() {
         return price;
     }
 
-    @Override
-    public void setPrice(int price) {
-        this.price = price;
-    }
+
 }
