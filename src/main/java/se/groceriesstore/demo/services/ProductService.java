@@ -146,7 +146,7 @@ public class ProductService {
 
         if (breadToUpdate != null ) {
              breadToUpdate.setName(breadToUpdate.getName());
-             breadToUpdate.setPrice(price);
+             breadToUpdate.setPrice(breadToUpdate.getPrice());
         } else {
             breadToUpdate.setId(id); // TODO: Kan behöva sätta alla värden!
         }
