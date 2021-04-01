@@ -28,36 +28,36 @@ public class ProductService {
         this.vegetablesDAO = vegetablesDAO;
     }
 
-    public List<Product> getProducts(){
+    public List<Product> getProducts() {
         List<Product> products = new ArrayList<>();
 
-     //   for(int i= 0; i < getBreads().size(); i++)
-       for(Bread breads: getAllBreads())
+        //   for(int i= 0; i < getBreads().size(); i++)
+        for (Bread breads : getAllBreads())
             products.add(breads);
 
-        for (Drink drinks: getAllDrinks())
+        for (Drink drinks : getAllDrinks())
             products.add(drinks);
 
-        for (Fruit fruits: getFruits())
+        for (Fruit fruits : getFruits())
             products.add(fruits);
 
-        for (Vegetable vegetables: getAllVegetables())
+        for (Vegetable vegetables : getAllVegetables())
             products.add(vegetables);
 
         return products;
     }
 
-    public List<Fruit> getFruits(){
+    public List<Fruit> getFruits() {
         List<Fruit> fruits = new ArrayList<>();
-        fruits.add(new Fruit("Äpple",12));
-        fruits.add(new Fruit("Orange",23));
-        fruits.add(new Fruit("Mango",35));
+        fruits.add(new Fruit("Äpple", 12));
+        fruits.add(new Fruit("Orange", 23));
+        fruits.add(new Fruit("Mango", 35));
         return fruits;
     }
 
-    public List<Vegetable> getAllVegetables(){
+    public List<Vegetable> getAllVegetables() {
         List<Vegetable> vegetables = new ArrayList<>();
-        for (VegetableDTO vegetableDTO : vegetablesDAO.getAllVegetables()){
+        for (VegetableDTO vegetableDTO : vegetablesDAO.getAllVegetables()) {
             Vegetable vegetable = mapToVegetable(vegetableDTO);
             vegetables.add(vegetable);
         }
@@ -75,21 +75,21 @@ public class ProductService {
         return null;
     }
 
-    public void deleteVegetable (Integer id ) {
+    public void deleteVegetable(Integer id) {
         vegetablesDAO.deleteVegetable(id);
     }
 
-    private VegetableDTO mapFromVegetable (Vegetable vegetable) {
+    private VegetableDTO mapFromVegetable(Vegetable vegetable) {
         return new VegetableDTO(vegetable.getName(), vegetable.getPrice());
     }
 
-    private Vegetable mapToVegetable (VegetableDTO vegetableDTO) {
+    private Vegetable mapToVegetable(VegetableDTO vegetableDTO) {
         return new Vegetable(vegetableDTO.getId(), vegetableDTO.getName(), vegetableDTO.getPrice());
     }
 
-    public List<Drink> getAllDrinks(){
+    public List<Drink> getAllDrinks() {
         List<Drink> drinks = new ArrayList<>();
-        for (DrinkDTO drinkDTO : drinksDAO.getAllDrinks()){
+        for (DrinkDTO drinkDTO : drinksDAO.getAllDrinks()) {
             Drink drink = mapToDrink(drinkDTO);
             drinks.add(drink);
         }
@@ -107,22 +107,22 @@ public class ProductService {
         return null;
     }
 
-    public void deleteDrink (Integer id ) {
+    public void deleteDrink(Integer id) {
         drinksDAO.deleteDrink(id);
     }
 
-    private DrinkDTO mapFromDrink (Drink drink) {
+    private DrinkDTO mapFromDrink(Drink drink) {
         return new DrinkDTO(drink.getName(), drink.getPrice());
     }
 
-    private Drink mapToDrink (DrinkDTO drinkDTO) {
+    private Drink mapToDrink(DrinkDTO drinkDTO) {
         return new Drink(drinkDTO.getId(), drinkDTO.getName(), drinkDTO.getPrice());
     }
 
 
     public List<Bread> getAllBreads() {
         List<Bread> breads = new ArrayList<>();
-        for( BreadDTO breadDTO : breadsDAO.getAllBreads()) {
+        for (BreadDTO breadDTO : breadsDAO.getAllBreads()) {
             Bread bread = mapToBread(breadDTO);
             breads.add(bread);
         }
@@ -130,7 +130,7 @@ public class ProductService {
     }
 
     public void addBread(Bread bread) {
-         breadsDAO.addBread(mapFromBread(bread));
+        breadsDAO.addBread(mapFromBread(bread));
     }
 
     public Bread getBreadById(Integer id) {
@@ -138,6 +138,21 @@ public class ProductService {
             return mapToBread(breadsDAO.findBreadById(id).get());
         }
         return null;
+    }
+
+
+    public Bread updateBread (Integer id, Integer price ) {
+        Bread breadToUpdate = getBreadById(id);
+
+        if (breadToUpdate != null ) {
+             breadToUpdate.setName(breadToUpdate.getName());
+             breadToUpdate.setPrice(price);
+        } else {
+            breadToUpdate.setId(id); // TODO: Kan behöva sätta alla värden!
+        }
+
+        BreadDTO updateBreadDTO = breadsDAO.addBread(mapFromBread(breadToUpdate));
+        return breadToUpdate;
     }
 
     public void deleteBread (Integer id ) {
@@ -151,5 +166,6 @@ public class ProductService {
     private Bread mapToBread (BreadDTO breadDTO) {
         return new Bread(breadDTO.getId(), breadDTO.getName(), breadDTO.getPrice());
     }
+
 }
 

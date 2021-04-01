@@ -35,4 +35,19 @@ public class Bread extends Product{
         return price;
     }
 
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
 }

@@ -33,4 +33,10 @@ public class BreadController {
     public void deleteBread(@PathVariable("id") Integer id) {
        productService.deleteBread(id);
     }
+
+    @PutMapping("/{id}")
+    public void updateBread (@PathVariable("id") Integer id,
+                             @RequestBody Integer price) {
+        productService.updateBread(id, price);
+    }
 }
