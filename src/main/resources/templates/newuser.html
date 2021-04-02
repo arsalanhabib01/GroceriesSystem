@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ny Användare</title>
+
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+
+
+</head>
+<body class="text-center">
+<h1>Välkommen till Groceries Store!</h1>
+
+<div class="container">
+    <div th:replace="fragments/navbar :: navbarHome"></div>
+</div>
+
+<div class="border-light">
+
+    <h2>Ny Användare</h2>
+    <form method="post"></form>
+    Namn:<br> <input type="text" value="" name="name" placeholder="Namn och efternamn"/><br>
+    Användnamn:  <br><input type="text" value="" username="username" placeholder="Mailaddress"/> <br>
+    Födelsedag:  <br><input type="date" value="" th:datetime="date"/> <br>
+    Lösenord:<br> <input type="password" value="" password="password" placeholder="Lösenord"/><br>
+    Bekräfta Lösenord:<br> <input type="password" value="" password="password" placeholder="Bekräfta Lösenord"/><br>
+    <br> <button class="btn-danger loging" type="submit">Skafa ny användare</button><br>
+</div>
+</body>
+</html>

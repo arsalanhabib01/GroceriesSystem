@@ -12,21 +12,19 @@
 <body class="text-center">
 <h1>Välkommen till Groceries Store!</h1>
 
+<div class="container">
+    <div th:replace="fragments/navbar :: navbarHome"></div>
+</div>
+
 <div class="border-light">
     <h2 >Login</h2>
     <form method="post"></form>
-    Användnamn:  <br><input type="text" value="" username="username"/><br>
-    lösenord: <br><input type="password" value="" password="password"/><br>
-    <br> <button  class="btn-danger loging"  type="submit">Login</button><br>
+    Användnamn:  <br><input type="text" name="username" value="" username="username" placeholder="Mailaddress"/><br>
+    lösenord: <br><input type="password" name="password" value="" password="password"  placeholder="Lösenord"/><br>
+    <br> <button  class="btn-danger lodging"  type="submit">Login</button><br>
+    <br><a class="btn-outline-secondary" th:href="@{newuser}">Ny på Groceries? BLI MEDLEM</a><br>
 
-    <h2>Ny Användare</h2>
-    <form method="post"></form>
-    Namn:<br> <input type="text" value="" name="name"/><br>
-    Användnamn:  <br><input type="text" value="" username="username"/> <br>
-    Födelsedag:  <br><input type="date" value="" th:datetime="date"/> <br>
-    Lösenord:<br> <input type="password" value="" password="password"/><br>
-    Bekräfta Lösenord:<br> <input type="password" value="" password="password"/><br>
-    <br> <button class="btn-danger loging" type="submit">Skafa ny användare</button><br>
 </div>
 </body>
+<script src="/js/logging.js"></script>
 </html>
