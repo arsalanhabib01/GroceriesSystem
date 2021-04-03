@@ -138,6 +138,18 @@
     text-transform: uppercase;
 }
 
+.accordion:after {
+    content: '\2192';
+    color: #777;
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+}
+
+.accordion.active:after {
+    content: '\2193';
+}
+
 .panel {
     padding: 0 16px;
     display: none;
