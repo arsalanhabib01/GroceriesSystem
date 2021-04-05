@@ -7,17 +7,23 @@ public class Milk extends Drink {
     private Integer id;
     private String name;
     private int price;
+    private String image;
+    private String volume;
 
     public Milk() {
         super();
     }
 
     public Milk(@JsonProperty("id") Integer id,
-                 @JsonProperty("name") String name,
-                 @JsonProperty("price") int price) {
+                @JsonProperty("name") String name,
+                @JsonProperty("price") int price,
+                @JsonProperty("image") String image,
+                @JsonProperty("volume") String volume) {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.image = image;
+        this.volume = volume;
     }
 
     @Override
@@ -33,5 +39,13 @@ public class Milk extends Drink {
     @Override
     public int getPrice() {
         return price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getVolume() {
+        return volume;
     }
 }

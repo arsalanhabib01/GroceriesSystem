@@ -21,30 +21,32 @@
         </div>
     </div>
 
-
     <div class="card" id="midcard">
-        <h1 class="Sodas">Läsk</h1>
+        <h1 class="sodas">Läsk</h1>
+        <tr th:each="sodas :${soda}">
+            <div class="card" style="width: 12rem;">
+                <div class="product-price-div">
+                    <h4 class="product-price">
+                        <td th:text="${sodas.price}"></td>kr
+                    </h4>
+                </div>
+                <img th:src="@{${sodas.image}}"  class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><td th:text="${sodas.name}"></td></h5>
+                    <p class="card-text"><td th:text="${sodas.volume}"></td></p>
+                    <button class="btn btn-primary minus-button">-</button>
+                    <p class="product-quantity">0</p>
+                    <button class="btn btn-primary plus-button">+</button>
+                </div>
+            </div>
+        </tr>
 
-             <table class="table table-hover">
-                 <thead>
-                 <tr>
-                     <th>Läsk Namn</th>
-                     <th>Läsk Pris</th>
-                 </tr>
-                 </thead>
-                 <tbody>
-                 <tr th:each="sodas :${soda}">
-                     <td th:text="${sodas.name}"></td>
-                     <td th:text="${sodas.price}"></td>
-                 </tr>
-                 </tbody>
-             </table>
-         </div>
-
-     </div>
-
-    <a class="btn btn-dark" th:href="@{index}">Tillbaka till Startsidan</a>
-
-     <script src="/js/main.js"></script>
-     </body>
-     </html>
+    </div>
+</div>
+<!--
+<a class="btn btn-dark" th:href="@{index}">Tillbaka till Startsidan</a>
+-->
+<script src="/js/main.js"></script>
+<script src="/js/products.js"></script>
+</body>
+</html>

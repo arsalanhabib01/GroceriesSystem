@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Juice</title>
+    <title>Juices</title>
 
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
@@ -22,27 +22,31 @@
     </div>
 
     <div class="card" id="midcard">
-        <h1 class="juices">Juice</h1>
+        <h1 class="juices">Juices</h1>
+        <tr th:each="juices :${juice}">
+            <div class="card" style="width: 12rem;">
+                <div class="product-price-div">
+                    <h4 class="product-price">
+                        <td th:text="${juices.price}"></td>kr
+                    </h4>
+                </div>
+                <img th:src="@{${juices.image}}"  class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><td th:text="${juices.name}"></td></h5>
+                    <p class="card-text"><td th:text="${juices.volume}"></td></p>
+                    <button class="btn btn-primary minus-button">-</button>
+                    <p class="product-quantity">0</p>
+                    <button class="btn btn-primary plus-button">+</button>
+                </div>
+            </div>
+        </tr>
 
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Juice Namn</th>
-                <th>Juice Pris</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="juices :${juice}">
-                <td th:text="${juices.name}"></td>
-                <td th:text="${juices.price}"></td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </div>
-
+<!--
 <a class="btn btn-dark" th:href="@{index}">Tillbaka till Startsidan</a>
-
+-->
 <script src="/js/main.js"></script>
+<script src="/js/products.js"></script>
 </body>
 </html>

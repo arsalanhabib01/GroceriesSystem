@@ -154,36 +154,36 @@ public class DrinkService {
 
 
     private KaffeDTO mapFromKaffe (Kaffe kaffe) {
-        return new KaffeDTO(kaffe.getName(), kaffe.getPrice());
+        return new KaffeDTO(kaffe.getName(), kaffe.getPrice(), kaffe.getImage(), kaffe.getVolume());
     }
 
     private MilkDTO mapFromMilk (Milk milk) {
-        return new MilkDTO(milk.getName(), milk.getPrice());
+        return new MilkDTO(milk.getName(), milk.getPrice(), milk.getImage(), milk.getVolume());
     }
 
     private SodaDTO mapFromSoda (Soda soda) {
-        return new SodaDTO(soda.getName(), soda.getPrice());
+        return new SodaDTO(soda.getName(), soda.getPrice(), soda.getImage(), soda.getVolume());
     }
 
     private JuiceDTO mapFromJuice (Juice juice) {
-        return new JuiceDTO(juice.getName(), juice.getPrice());
+        return new JuiceDTO(juice.getName(), juice.getPrice(), juice.getImage(), juice.getVolume());
     }
 
 
     private Kaffe mapToKaffe (KaffeDTO kaffeDTO) {
-        return new Kaffe(kaffeDTO.getId(), kaffeDTO.getName(), kaffeDTO.getPrice());
+        return new Kaffe(kaffeDTO.getId(), kaffeDTO.getName(), kaffeDTO.getPrice(), kaffeDTO.getImage(), kaffeDTO.getVolume());
     }
 
     private Milk mapToMilk (MilkDTO milkDTO) {
-        return new Milk(milkDTO.getId(), milkDTO.getName(), milkDTO.getPrice());
+        return new Milk(milkDTO.getId(), milkDTO.getName(), milkDTO.getPrice(), milkDTO.getImage(), milkDTO.getVolume());
     }
 
     private Soda mapToSoda (SodaDTO sodaDTO) {
-        return new Soda(sodaDTO.getId(), sodaDTO.getName(), sodaDTO.getPrice());
+        return new Soda(sodaDTO.getId(), sodaDTO.getName(), sodaDTO.getPrice(), sodaDTO.getImage(), sodaDTO.getVolume());
     }
 
     private Juice mapToJuice (JuiceDTO juiceDTO) {
-        return new Juice(juiceDTO.getId(), juiceDTO.getName(), juiceDTO.getPrice());
+        return new Juice(juiceDTO.getId(), juiceDTO.getName(), juiceDTO.getPrice(), juiceDTO.getImage() ,juiceDTO.getVolume());
     }
 
 }

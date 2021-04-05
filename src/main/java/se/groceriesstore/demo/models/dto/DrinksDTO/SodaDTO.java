@@ -11,21 +11,27 @@ public class SodaDTO {
     private Integer id;
     private int price;
     private String name;
+    private String image;
+    private String volume;
 
 
-    public SodaDTO(Integer id, int price, String name) {
+    public SodaDTO(Integer id, int price, String name, String image, String volume) {
         this.id = id;
         this.price = price;
         this.name = name;
+        this.image = image;
+        this.volume = volume;
     }
 
 
     public SodaDTO() {
     }
 
-    public SodaDTO(String name, int price) {
+    public SodaDTO(String name, int price, String image, String volume) {
         this.name = name;
         this.price = price;
+        this.image = image;
+        this.volume = volume;
     }
 
     public Integer getId() {
@@ -38,6 +44,14 @@ public class SodaDTO {
 
     public String getName() {
         return name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getVolume() {
+        return volume;
     }
 
     public void setId(Integer id) {

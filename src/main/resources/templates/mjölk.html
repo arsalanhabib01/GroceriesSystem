@@ -21,28 +21,32 @@
         </div>
     </div>
 
-
     <div class="card" id="midcard">
-        <h1 class="mjölks">Mjölk</h1>
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>Mjölk Namn</th>
-                <th>Mjölk Pris</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="milks :${milk}">
-                <td th:text="${milks.name}"></td>
-                <td th:text="${milks.price}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <h1 class="milks">Mjölk</h1>
+        <tr th:each="milks :${milk}">
+            <div class="card" style="width: 12rem;">
+                <div class="product-price-div">
+                    <h4 class="product-price">
+                        <td th:text="${milks.price}"></td>kr
+                    </h4>
+                </div>
+                <img th:src="@{${milks.image}}"  class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><td th:text="${milks.name}"></td></h5>
+                    <p class="card-text"><td th:text="${milks.volume}"></td></p>
+                    <button class="btn btn-primary minus-button">-</button>
+                    <p class="product-quantity">0</p>
+                    <button class="btn btn-primary plus-button">+</button>
+                </div>
+            </div>
+        </tr>
+
     </div>
-
 </div>
+<!--
 <a class="btn btn-dark" th:href="@{index}">Tillbaka till Startsidan</a>
-
+-->
 <script src="/js/main.js"></script>
+<script src="/js/products.js"></script>
 </body>
 </html>
