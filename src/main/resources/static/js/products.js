@@ -1,7 +1,8 @@
 let productQuantity = 0;
 let thisQuantity = 0;
 
-$(function() {
+$(document).ready(function() {
+
 
 $('.plus-button').on('click', function () {
     number = $(this).closest('div').find('.product-quantity').val();
@@ -15,7 +16,20 @@ $('.minus-button').on('click', function () {
     number--;
     $(this).closest('div').find('.product-quantity').text(number);
 })
+
+    $('.form-control').change(function() {
+        updateQuantity(this.value);
+    });
+
 })
+
+
+
+function updateQuantity(quantityInput) {
+    /* Calculate line price */
+    console.log(quantityInput);
+    checkIfMoreThanZero(quantityInput);
+}
 
 
 function increaseQuantity() {
@@ -27,7 +41,7 @@ function increaseQuantity() {
      //  $(this).closest('.card-body').find('.product-quantity').text(productQuantity);
      //  console.log($(this));
     // $('#quantity').text(productQuantity);
-    checkIfMoreThanZero(productQuantity);
+
 }
 
 function decreaseQuantity() {
