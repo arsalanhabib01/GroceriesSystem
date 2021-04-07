@@ -99,11 +99,9 @@ public class ProductService {
     public void addDrink(Drink drink) {
         drinksDAO.addDrink(mapFromDrink(drink));
     }
-
     public void addBread(Bread bread) {
         breadsDAO.addBread(mapFromBread(bread));
     }
-
 
     public Fruit getFruitById(Integer id) {
         if (fruitsDAO.findFruitById(id).isPresent()) {

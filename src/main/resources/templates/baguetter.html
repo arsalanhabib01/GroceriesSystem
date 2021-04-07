@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Baguetter</title>
+
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+</head>
+
+<body class="text-center">
+<h1>Välkommen till Groceries Store!</h1>
+
+<div class="container">
+    <div th:insert="fragments/navbar :: navbar"></div>
+</div>
+
+<div class="card-columns">
+    <div class="card" id="product-category">
+        <div th:replace="fragments/slidemenu::slidemenu">
+        </div>
+    </div>
+
+    <div class="card" id="midcard">
+        <h1 class="baguettes">Baguetter</h1>
+        <tr th:each="baguettes :${baguette}">
+            <div class="card" style="width: 12rem;">
+                <div class="product-price-div">
+                    <h4 class="product-price">
+                        <td th:text="${baguettes.price}"></td>kr
+                    </h4>
+                </div>
+                <img th:src="@{${baguettes.image}}"  class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><td th:text="${baguettes.name}"></td></h5>
+                    <p class="card-text"><td th:text="${baguettes.volume}"></td></p>
+                    <button class="btn btn-primary minus-button">-</button>
+                    <p class="product-quantity">0</p>
+                    <button class="btn btn-primary plus-button">+</button>
+                </div>
+            </div>
+        </tr>
+
+    </div>
+</div>
+<!--
+<a class="btn btn-dark" th:href="@{index}">Tillbaka till Startsidan</a>
+-->
+<script src="/js/main.js"></script>
+<script src="/js/products.js"></script>
+</body>
+</html>
