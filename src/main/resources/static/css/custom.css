@@ -28,6 +28,10 @@
     text-decoration: underline;
 }
 
+.notActive {
+    display:none;
+}
+
 #product-category {
     display: grid;
     grid-column: 1;
@@ -35,11 +39,10 @@
 }
 
 #midcard  {
-
 }
 
 #cartcard {
-
+    width: 50vw;
 }
 
 /* CSS for Product Cards */

@@ -20,8 +20,13 @@ public class GroceryController {
     @Autowired
     BreadService breadService;
 
-    @RequestMapping("/index")
-    public String start(){
+    @RequestMapping("index")
+    public String start(Model model) {
+        model.addAttribute("products", productService.getProducts());
+        model.addAttribute("breads", productService.getAllBreads());
+        model.addAttribute("drinks", productService.getAllDrinks());
+        model.addAttribute("fruits", productService.getAllFruits());
+        model.addAttribute("vegetables", productService.getAllVegetables());
         return "index";
     }
 
