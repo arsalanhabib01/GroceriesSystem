@@ -17,5 +17,8 @@ function decreaseQuantity() {
         if (q > 0) {
             $('#cartcard').removeClass('notActive');
         }
+        else if (q <= 0) {
+            $('#cartcard').addClass('notActive');
+        }
 
 }
