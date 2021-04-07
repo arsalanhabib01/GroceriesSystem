@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+</head>
+d
+<body>
+
+    <div th:fragment="cartmenu">
+        <button class="accordion">Kundvagn</button>
+        <div class="panel">
+            <tr th:each="bread : ${breads}">
+                <a class= "sub-btn" th:href="@{breads}">
+                    <td th:text="${bread.name}"></td> </a>
+                <span class="line"></span>
+                <br>
+            </tr>
+        </div>
+    </div>
+
+</body>
+</html>
