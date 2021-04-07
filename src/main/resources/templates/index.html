@@ -20,11 +20,29 @@
 <div class="container">
     <div th:replace="fragments/navbar :: navbarHome"></div>
 </div>
-<div class="card" style="width: 12rem;">
-    <img src="/image/apelsin.jpg" class="card-img-top" alt="...">
-    <div class="product-price-div">
-        <h4 class="product-price">19,90/kg</h4>
+
+<div class="card-columns">
+    <div class="card" id="product-category">
+        <div th:insert="fragments/slidemenu::slidemenu">
+        </div>
+        </div>
+
+
+    <div class="card" id="midcard">
+        <div class="card" style="width: 12rem;">
+            <img src="/image/apelsin.jpg" class="card-img-top" alt="...">
+            <div class="product-price-div">
+              <h4 class="product-price">19,90/kg</h4>
+       </div>
+
+    <div class="card-body">
+        <h5 class="card-title">Apelsin</h5>
+        <p class="card-text">CA: 270G</p>
+        <button class="btn btn-primary minus-button" onclick="decreaseQuantity()">-</button>
+        <p class="product-quantity">0</p>
+        <button class="btn btn-primary plus-button" onclick="increaseQuantity()">+</button>
     </div>
+
     <div class="card-body">
         <h5 class="card-title">Apelsin</h5>
         <p class="card-text">CA: 270G</p>
@@ -34,5 +52,12 @@
     </div>
 </div>
 
+</div>
+
+<div id="cartcard" class="notActive">
+    <div th:insert="fragments/cartmenu :: cartmenu"></div>
+</div>
+
+</div>
 </body>
 </html>
