@@ -20,6 +20,12 @@ public class GroceryController {
     @Autowired
     BreadService breadService;
 
+    @RequestMapping("")
+    public String cart(Model model) {
+            model.addAttribute("cart", productService.getCart());
+        return "";
+    }
+
     @RequestMapping("index")
     public String start(Model model) {
         model.addAttribute("products", productService.getProducts());

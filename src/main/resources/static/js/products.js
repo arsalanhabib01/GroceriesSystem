@@ -23,11 +23,22 @@ function updateQuantity(quantityInput) {
 }
 
 function addToCart (name, price, volume) {
-    console.log(name);
-    console.log(price);
-    console.log(volume);
+    $('.theCart').append(`
+        <p>
+            <div class="cartItem">
+                <button>
+                    <div class="itemName">
+                    ${name}
+                    </div>
+                    <div class="itemPrice">
+                    ${price}
+                    </div>
+                </button>
+            </div>
 
-}
+</p>
+
+`)}
 
 
 

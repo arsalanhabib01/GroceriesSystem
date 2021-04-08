@@ -32,6 +32,11 @@ public class ProductService {
         this.fruitsDAO = fruitsDAO;
     }
 
+    public List<Product> getCart() {
+        List<Product> cart = new ArrayList<>();
+        return cart;
+    }
+
     public List<Product> getProducts(){
         List<Product> products = new ArrayList<>();
 
@@ -132,6 +137,7 @@ public class ProductService {
     }
 
 
+
     public void deleteFruit (Integer id ) {
         fruitsDAO.deleteFruit(id);
     }
@@ -181,5 +187,6 @@ public class ProductService {
     private Bread mapToBread (BreadDTO breadDTO) {
         return new Bread(breadDTO.getId(), breadDTO.getName(), breadDTO.getPrice());
     }
+
 }
 
