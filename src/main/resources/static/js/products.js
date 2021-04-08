@@ -5,17 +5,24 @@ $(document).ready(function() {
     $('.form-control').change(function() {
         updateQuantity(this.value);
         let name = $(this).closest('div').find('.card-title').text();
-        addToCart(name);
+        let price = $(this).closest('div').parent().parent().find('.product-price').text();
+        let volume = $(this).closest('div').find('.card-text').text();
+
+        addToCart(name, price, volume);
     });
 
 })
 
 function updateQuantity(quantityInput) {
     checkIfMoreThanZero(quantityInput);
+
 }
 
-function addToCart (name) {
-    console.log(name)
+function addToCart (name, price, volume) {
+    console.log(name);
+    console.log(price);
+    console.log(volume);
+
 }
 
 

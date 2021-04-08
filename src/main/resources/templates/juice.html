@@ -31,9 +31,7 @@
             <div class="product">
             <div class="card" style="width: 12rem;">
                 <div class="product-price-div">
-                    <h4 class="product-price">
-                        <td th:text="${juices.price}"></td>kr
-                    </h4>
+                    <p class="product-price"><td th:text="${juices.price}"></td> kr</p>
                 </div>
                 <img th:src="@{${juices.image}}"  class="card-img-top" alt="...">
                 <div class="card-body">
