@@ -7,32 +7,23 @@ import java.util.Date;
 @Entity
 @Table(name = "users")
 public class UserDTO {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
     private String name;
-    private String username;
+    @Id
+    private String email;
     private Date birthday;
     private String password;
 
-    public UserDTO(Integer id, String name, String username, Date birthday, String password) {
-        this.id = id;
+    public UserDTO(Integer id, String name, String email, Date birthday, String password) {
+
         this.name = name;
-        this.username = username;
+        this.email = email;
         this.birthday = birthday;
         this.password = password;
     }
 
     public UserDTO() {
 
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -43,12 +34,12 @@ public class UserDTO {
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String username) {
+        this.email = username;
     }
 
     public Date getBirthday() {

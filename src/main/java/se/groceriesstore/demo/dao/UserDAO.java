@@ -15,5 +15,5 @@ public class UserDAO {
     public void addUser(UserDTO userDTO){
         userRepository.save(userDTO);
     }
-    public void findUserById(Integer id){ userRepository.findById(id); }
+    public void findUserById(String email){ userRepository.findById(email); }
 }
