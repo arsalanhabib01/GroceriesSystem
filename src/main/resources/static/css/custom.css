@@ -47,10 +47,10 @@
 
 /* CSS for Product Cards */
 .product-price-div {
-    margin-left: 60%;
+    margin-left: 56%;
     margin-top: 5%;
     position: absolute;
-    width: 35%;
+    width: 39%;
     height: 45px;
     background-color: white;
     border: 1px solid gray;
