@@ -28,8 +28,12 @@
     text-decoration: underline;
 }
 
+#cartcard {
+    width: 10vw;
+}
+
 .notActive {
-    display:none;
+    width:10vw;
 }
 
 #product-category {
@@ -41,9 +45,6 @@
 #midcard  {
 }
 
-#cartcard {
-    width: 50vw;
-}
 
 /* CSS for Product Cards */
 .product-price-div {

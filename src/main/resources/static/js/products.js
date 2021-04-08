@@ -11,6 +11,10 @@ $(document).ready(function() {
         addToCart(name, price, volume);
     });
 
+    $('#cart.accordion').click(function() {
+        $('#cartcard').css('width', '30vw');
+    })
+
 })
 
 function updateQuantity(quantityInput) {
@@ -30,10 +34,10 @@ function addToCart (name, price, volume) {
 
 function checkIfMoreThanZero(q) {
     if (q >= 0) {
-        $('#cartcard').removeClass('notActive');
+        $('#cartcard').css('width', '30vw');
     }
     else if (q < 1) {
-        $('#cartcard').addClass('notActive');
+        $('#cartcard').css('width', '10vw');
     }
 }
 

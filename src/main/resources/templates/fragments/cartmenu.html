@@ -7,7 +7,7 @@ d
 <body>
 
     <div th:fragment="cartmenu">
-        <button class="accordion">Kundvagn</button>
+        <button id="cart" class="accordion">Kundvagn</button>
         <div class="panel">
             <tr th:each="bread : ${breads}">
                 <a class= "sub-btn" th:href="@{breads}">
