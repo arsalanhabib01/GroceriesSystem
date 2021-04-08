@@ -45,6 +45,34 @@
 #midcard  {
 }
 
+/* Cart */
+.cartItem {
+    text-align: center;
+}
+
+.itemName, .itemPrice  {
+    display:inline;
+}
+
+.itemName {
+    margin-left: -20%;
+}
+
+.itemPrice {
+    margin-left: 20%;
+}
+
+.cartItem button, .buy{
+    width:100%;
+}
+
+.buy {
+    background-color: lightgreen;
+    height: 90px;
+    bottom: 30vw;
+    margin-top: 2vw;
+}
+
 
 /* CSS for Product Cards */
 .product-price-div {

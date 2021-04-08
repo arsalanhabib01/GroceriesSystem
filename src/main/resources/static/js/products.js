@@ -24,7 +24,7 @@ function updateQuantity(quantityInput) {
 
 function addToCart (name, price, volume) {
     $('.theCart').append(`
-        <p>
+   
             <div class="cartItem">
                 <button>
                     <div class="itemName">
@@ -35,9 +35,6 @@ function addToCart (name, price, volume) {
                     </div>
                 </button>
             </div>
-
-</p>
-
 `)}
 
 
