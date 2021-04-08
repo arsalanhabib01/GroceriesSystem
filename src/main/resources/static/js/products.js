@@ -1,4 +1,5 @@
 let productQuantity = 0;
+let cart = [];
 
 $(document).ready(function() {
 
@@ -23,6 +24,11 @@ function updateQuantity(quantityInput) {
 }
 
 function addToCart (name, price, volume) {
+
+    item = [name, price, volume];
+    cart.push(item);
+    console.log(cart);
+
     $('.theCart').append(`
    
             <div class="cartItem">
