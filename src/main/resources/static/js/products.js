@@ -65,6 +65,7 @@ function calculateSum() {
         total += sum;
     }
     console.log(total);
+    $('.sum').html('Summa: ' + total);
 }
 
 function updateQuantity(quantityInput) {
