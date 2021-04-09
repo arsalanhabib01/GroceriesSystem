@@ -8,20 +8,20 @@ import java.util.Date;
 @Table(name = "users")
 public class UserDTO {
 
+
     private String name;
     @Id
     private String email;
     private Date birthday;
     private String password;
 
-    public UserDTO(Integer id, String name, String email, Date birthday, String password) {
+    public UserDTO( String name, String email, Date birthday, String password) {
 
         this.name = name;
         this.email = email;
         this.birthday = birthday;
         this.password = password;
     }
-
     public UserDTO() {
 
     }
