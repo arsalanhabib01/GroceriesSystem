@@ -8,6 +8,9 @@ $(document).ready(function() {
     });
 
     $('.add-to-cart').click(function() {
+
+        let exists = false;
+
         $('#cartcard').css('width', '30vw');
 
         let name = $(this).closest('div').find('.card-title').text();
@@ -27,27 +30,21 @@ $(document).ready(function() {
 
             else if (cart.length > 0 ) {
 
-            for (let i = 0; i < cart.length; i++) {
+                for (let i = 0; i < cart.length; i++) {
+                    if (cart[i][0] === name) {
+                        exists = true;
+                       cart[i][3] += parseInt(amount, 10);
+                       console.log(cart);
+                       updateCartItem(cart[i][0], cart[i][3]);
+                        }
+                    }
 
-                if (!cart[i][0].includes("" + name +"")) {
+                if (!exists) {
                     addToCart(name, price, volume, amount);
                 }
 
-                else if (cart[i][0] === name) {
-                   cart[i][3] += parseInt(amount, 10);
-                   console.log(cart);
-                   updateCartItem(cart[i][0], cart[i][3]);
                 }
-
-
-            }
-
-
-            }
-
-
         }
-
     })
 
     //Making cart wide
@@ -63,7 +60,9 @@ function updateQuantity(quantityInput) {
 
 
 function updateCartItem(name, amount) {
+
  $('.theCart').find('.itemAmount').text(amount);
+
 }
 
 
