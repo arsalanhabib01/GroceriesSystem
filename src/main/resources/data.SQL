@@ -142,8 +142,6 @@ CREATE TABLE vegetables (
 INSERT INTO vegetables (name, price) VALUES
 ('spenat', 0);
 
-DROP TABLE vegetables;
-
 DROP TABLE carts;
 
 CREATE TABLE carts (
