@@ -5,13 +5,48 @@ $(document).ready(function() {
 
     $('.form-control').change(function() {
         updateQuantity(this.value);
+    });
+
+    $('.add-to-cart').click(function() {
+        $('#cartcard').css('width', '30vw');
+
         let name = $(this).closest('div').find('.card-title').text();
         let price = $(this).closest('div').parent().parent().find('.product-price').text();
         let volume = $(this).closest('div').find('.card-text').text();
+        let amount = parseInt($(this).closest('div').parent().parent().find('.form-control').val(), 10);
 
-        addToCart(name, price, volume);
-    });
+        if (amount === 0 ) {
 
+        }
+
+        else if (amount > 0) {
+
+            if (cart.length === 0) {
+                addToCart(name, price, volume, amount);
+            }
+
+            else if (cart.length > 0 ) {
+
+            for (let i = 0; i < cart.length; i++) {
+                if (cart[i][0] === name) {
+                   cart[i][3] += parseInt(amount, 10);
+
+                   updateCartItem(cart[i][0], cart[i][3]);
+                }
+
+                else {
+                    addToCart(name, price, volume, amount);
+                }
+
+            }
+            }
+
+
+        }
+
+    })
+
+    //Making cart wide
     $('#cart.accordion').click(function() {
         $('#cartcard').css('width', '30vw');
     })
@@ -20,12 +55,18 @@ $(document).ready(function() {
 
 function updateQuantity(quantityInput) {
     checkIfMoreThanZero(quantityInput);
-
 }
 
-function addToCart (name, price, volume) {
 
-    item = [name, price, volume];
+function updateCartItem(name, amount) {
+ $('.theCart').find('.itemAmount').text(amount);
+}
+
+
+
+function addToCart (name, price, volume, amount) {
+
+    item = [name, price, volume, amount];
     cart.push(item);
     console.log(cart);
 
@@ -38,6 +79,9 @@ function addToCart (name, price, volume) {
                     </div>
                     <div class="itemPrice">
                     ${price}
+                     </div>
+                    <div class="itemAmount">
+                    ${amount}
                     </div>
                 </button>
             </div>

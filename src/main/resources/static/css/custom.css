@@ -50,7 +50,7 @@
     text-align: center;
 }
 
-.itemName, .itemPrice  {
+.itemName, .itemPrice, .itemAmount {
     display:inline;
 }
 
@@ -59,7 +59,11 @@
 }
 
 .itemPrice {
-    margin-left: 20%;
+    margin-left: 10%;
+}
+
+.itemAmount {
+    margin-left: 10%;
 }
 
 .cartItem button, .buy{
