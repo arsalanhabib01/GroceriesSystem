@@ -60,8 +60,15 @@ function updateQuantity(quantityInput) {
 
 
 function updateCartItem(name, amount) {
+ let sameProduct = $('.theCart').find('.itemName').text(); //Apelsin Juice
 
- $('.theCart').find('.itemAmount').text(amount);
+    if ($('.theCart').find('.itemName').text() === sameProduct) {
+        console.log("Produkt finns i korg ");
+    }
+
+    $(".itemName:contains('" + name + "')").closest('.cartItem').find('.itemAmount').text(amount);
+
+
 
 }
 
