@@ -28,17 +28,21 @@ $(document).ready(function() {
             else if (cart.length > 0 ) {
 
             for (let i = 0; i < cart.length; i++) {
-                if (cart[i][0] === name) {
-                   cart[i][3] += parseInt(amount, 10);
 
-                   updateCartItem(cart[i][0], cart[i][3]);
-                }
-
-                else {
+                if (!cart[i][0].includes("" + name +"")) {
                     addToCart(name, price, volume, amount);
                 }
 
+                else if (cart[i][0] === name) {
+                   cart[i][3] += parseInt(amount, 10);
+                   console.log(cart);
+                   updateCartItem(cart[i][0], cart[i][3]);
+                }
+
+
             }
+
+
             }
 
 
