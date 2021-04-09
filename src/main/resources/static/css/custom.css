@@ -28,6 +28,14 @@
     text-decoration: underline;
 }
 
+#cartcard {
+    width: 10vw;
+}
+
+.notActive {
+    width:10vw;
+}
+
 #product-category {
     display: grid;
     grid-column: 1;
@@ -35,19 +43,43 @@
 }
 
 #midcard  {
-
 }
 
-#cartcard {
-
+/* Cart */
+.cartItem {
+    text-align: center;
 }
+
+.itemName, .itemPrice  {
+    display:inline;
+}
+
+.itemName {
+    margin-left: -20%;
+}
+
+.itemPrice {
+    margin-left: 20%;
+}
+
+.cartItem button, .buy{
+    width:100%;
+}
+
+.buy {
+    background-color: lightgreen;
+    height: 90px;
+    bottom: 30vw;
+    margin-top: 2vw;
+}
+
 
 /* CSS for Product Cards */
 .product-price-div {
-    margin-left: 60%;
+    margin-left: 56%;
     margin-top: 5%;
     position: absolute;
-    width: 35%;
+    width: 39%;
     height: 45px;
     background-color: white;
     border: 1px solid gray;

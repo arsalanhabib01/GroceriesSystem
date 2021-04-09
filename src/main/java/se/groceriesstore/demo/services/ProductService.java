@@ -32,6 +32,11 @@ public class ProductService {
         this.fruitsDAO = fruitsDAO;
     }
 
+    public List<Product> getCart() {
+        List<Product> cart = new ArrayList<>();
+        return cart;
+    }
+
     public List<Product> getProducts(){
         List<Product> products = new ArrayList<>();
 
@@ -99,11 +104,9 @@ public class ProductService {
     public void addDrink(Drink drink) {
         drinksDAO.addDrink(mapFromDrink(drink));
     }
-
     public void addBread(Bread bread) {
         breadsDAO.addBread(mapFromBread(bread));
     }
-
 
     public Fruit getFruitById(Integer id) {
         if (fruitsDAO.findFruitById(id).isPresent()) {
@@ -132,6 +135,7 @@ public class ProductService {
         }
         return null;
     }
+
 
 
     public void deleteFruit (Integer id ) {
@@ -183,5 +187,6 @@ public class ProductService {
     private Bread mapToBread (BreadDTO breadDTO) {
         return new Bread(breadDTO.getId(), breadDTO.getName(), breadDTO.getPrice());
     }
+
 }
 

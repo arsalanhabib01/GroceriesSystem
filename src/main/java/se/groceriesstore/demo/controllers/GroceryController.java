@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import se.groceriesstore.demo.services.BreadService;
 import se.groceriesstore.demo.services.DrinkService;
 import se.groceriesstore.demo.services.ProductService;
 
@@ -16,8 +17,22 @@ public class GroceryController {
     @Autowired
     DrinkService drinkService;
 
-    @RequestMapping("/index")
-    public String start(){
+    @Autowired
+    BreadService breadService;
+
+    @RequestMapping("")
+    public String cart(Model model) {
+            model.addAttribute("cart", productService.getCart());
+        return "";
+    }
+
+    @RequestMapping("index")
+    public String start(Model model) {
+        model.addAttribute("products", productService.getProducts());
+        model.addAttribute("breads", productService.getAllBreads());
+        model.addAttribute("drinks", productService.getAllDrinks());
+        model.addAttribute("fruits", productService.getAllFruits());
+        model.addAttribute("vegetables", productService.getAllVegetables());
         return "index";
     }
 
@@ -110,6 +125,29 @@ public class GroceryController {
         model.addAttribute("juice", drinkService.getAllJuices());
         return "juice";
     }
+
+    @RequestMapping("baguetter")
+    public String showBaguettes(Model model){
+        model.addAttribute("products", productService.getProducts());
+        model.addAttribute("breads", productService.getAllBreads());
+        model.addAttribute("drinks", productService.getAllDrinks());
+        model.addAttribute("fruits", productService.getAllFruits());
+        model.addAttribute("vegetables", productService.getAllVegetables());
+        model.addAttribute("baguette", breadService.getAllBaguettes());
+        return "baguetter";
+    }
+
+    @RequestMapping("rostbröd")
+    public String showToasts(Model model){
+        model.addAttribute("products", productService.getProducts());
+        model.addAttribute("breads", productService.getAllBreads());
+        model.addAttribute("drinks", productService.getAllDrinks());
+        model.addAttribute("fruits", productService.getAllFruits());
+        model.addAttribute("vegetables", productService.getAllVegetables());
+        model.addAttribute("toast", breadService.getAllToasts());
+        return "rostbröd";
+    }
+
 
   /*   @RequestMapping("login")
     public String showlogain(Model model){
