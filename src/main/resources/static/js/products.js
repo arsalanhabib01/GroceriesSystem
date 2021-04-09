@@ -1,5 +1,6 @@
 let productQuantity = 0;
 let cart = [];
+let sum = 0;
 
 $(document).ready(function() {
 
@@ -45,6 +46,7 @@ $(document).ready(function() {
 
                 }
         }
+        calculateSum();
     })
 
     //Making cart wide
@@ -53,6 +55,17 @@ $(document).ready(function() {
     })
 
 })
+
+function calculateSum() {
+    let total = 0;
+    for (let i = 0; i < cart.length; i++) {
+        let sumPrice = cart[i][1];
+        let sumAmount = cart[i][3];
+        sum = parseInt(sumPrice,10) * parseInt(sumAmount,10);
+        total += sum;
+    }
+    console.log(total);
+}
 
 function updateQuantity(quantityInput) {
     checkIfMoreThanZero(quantityInput);
