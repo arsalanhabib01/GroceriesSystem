@@ -20,11 +20,6 @@ public class GroceryController {
     @Autowired
     BreadService breadService;
 
-    @RequestMapping("")
-    public String cart(Model model) {
-            model.addAttribute("cart", productService.getCart());
-        return "";
-    }
 
     @RequestMapping("index")
     public String start(Model model) {
@@ -52,6 +47,7 @@ public class GroceryController {
         model.addAttribute("drinks", productService.getAllDrinks());
         model.addAttribute("fruits", productService.getAllFruits());
         model.addAttribute("vegetables", productService.getAllVegetables());
+
         return "breads";
     }
 
@@ -61,6 +57,7 @@ public class GroceryController {
         model.addAttribute("drinks", productService.getAllDrinks());
         model.addAttribute("fruits", productService.getAllFruits());
         model.addAttribute("vegetables", productService.getAllVegetables());
+
         return "drinks";
     }
 
@@ -70,6 +67,7 @@ public class GroceryController {
         model.addAttribute("drinks", productService.getAllDrinks());
         model.addAttribute("fruits", productService.getAllFruits());
         model.addAttribute("vegetables", productService.getAllVegetables());
+
         return "fruits";
     }
 
@@ -90,6 +88,7 @@ public class GroceryController {
         model.addAttribute("fruits", productService.getAllFruits());
         model.addAttribute("vegetables", productService.getAllVegetables());
         model.addAttribute("kaffe", drinkService.getAllKaffes());
+
         return "kaffe";
     }
 
@@ -101,6 +100,7 @@ public class GroceryController {
         model.addAttribute("fruits", productService.getAllFruits());
         model.addAttribute("vegetables", productService.getAllVegetables());
         model.addAttribute("milk", drinkService.getAllMilks());
+
         return "mjölk";
     }
 
@@ -112,6 +112,7 @@ public class GroceryController {
         model.addAttribute("fruits", productService.getAllFruits());
         model.addAttribute("vegetables", productService.getAllVegetables());
         model.addAttribute("soda", drinkService.getAllSodas());
+
         return "läsk";
     }
 
@@ -123,6 +124,7 @@ public class GroceryController {
         model.addAttribute("fruits", productService.getAllFruits());
         model.addAttribute("vegetables", productService.getAllVegetables());
         model.addAttribute("juice", drinkService.getAllJuices());
+
         return "juice";
     }
 
@@ -134,6 +136,7 @@ public class GroceryController {
         model.addAttribute("fruits", productService.getAllFruits());
         model.addAttribute("vegetables", productService.getAllVegetables());
         model.addAttribute("baguette", breadService.getAllBaguettes());
+
         return "baguetter";
     }
 
@@ -145,6 +148,7 @@ public class GroceryController {
         model.addAttribute("fruits", productService.getAllFruits());
         model.addAttribute("vegetables", productService.getAllVegetables());
         model.addAttribute("toast", breadService.getAllToasts());
+
         return "rostbröd";
     }
 }

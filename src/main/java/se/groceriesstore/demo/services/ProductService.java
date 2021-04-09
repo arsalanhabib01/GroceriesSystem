@@ -1,15 +1,9 @@
 package se.groceriesstore.demo.services;
 
 import org.springframework.stereotype.Service;
-import se.groceriesstore.demo.dao.BreadsDAO;
-import se.groceriesstore.demo.dao.DrinksDAO;
-import se.groceriesstore.demo.dao.FruitsDAO;
-import se.groceriesstore.demo.dao.VegetablesDAO;
+import se.groceriesstore.demo.dao.*;
 import se.groceriesstore.demo.models.*;
-import se.groceriesstore.demo.models.dto.BreadDTO;
-import se.groceriesstore.demo.models.dto.DrinkDTO;
-import se.groceriesstore.demo.models.dto.FruitDTO;
-import se.groceriesstore.demo.models.dto.VegetableDTO;
+import se.groceriesstore.demo.models.dto.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +17,15 @@ public class ProductService {
     private final DrinksDAO drinksDAO;
     private final VegetablesDAO vegetablesDAO;
     private final FruitsDAO fruitsDAO;
+    private final CartDAO cartDAO;
 
     public ProductService(BreadsDAO breadsDAO, DrinksDAO drinksDAO,
-                          VegetablesDAO vegetablesDAO, FruitsDAO fruitsDAO) {
+                          VegetablesDAO vegetablesDAO, FruitsDAO fruitsDAO, CartDAO cartDAO) {
         this.breadsDAO = breadsDAO;
         this.drinksDAO = drinksDAO;
         this.vegetablesDAO = vegetablesDAO;
         this.fruitsDAO = fruitsDAO;
+        this.cartDAO = cartDAO;
     }
 
     public List<Product> getCart() {
@@ -92,6 +88,9 @@ public class ProductService {
         return breads;
     }
 
+    public void addCart(Cart cart) {
+        cartDAO.addCart(mapFromCart(cart));
+    }
 
     public void addFruit(Fruit fruit) {
         fruitsDAO.addFruit(mapFromFruit(fruit));
@@ -171,6 +170,9 @@ public class ProductService {
         return new BreadDTO(bread.getName(), bread.getPrice());
     }
 
+    private CartDTO mapFromCart(Cart cart) {
+        return new CartDTO(cart.getId(), cart.getOrder_id(), cart.getProduct_name(), cart.getProduct_id(), cart.getAmount());
+    }
 
     private Fruit mapToFruit (FruitDTO fruitDTO) {
         return new Fruit(fruitDTO.getId(), fruitDTO.getName(), fruitDTO.getPrice());
@@ -187,6 +189,7 @@ public class ProductService {
     private Bread mapToBread (BreadDTO breadDTO) {
         return new Bread(breadDTO.getId(), breadDTO.getName(), breadDTO.getPrice());
     }
+
 
 }
 

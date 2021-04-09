@@ -142,4 +142,21 @@ CREATE TABLE vegetables (
 INSERT INTO vegetables (name, price) VALUES
 ('spenat', 0);
 
+DROP TABLE vegetables;
+
+DROP TABLE carts;
+
+CREATE TABLE carts (
+    id SERIAL PRIMARY KEY,
+    order_id int,
+    product_name varchar(255),
+    product_id int,
+    amount int
+);
+
+
+
+
+
+
 
