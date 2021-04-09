@@ -15,9 +15,9 @@ $(document).ready(function() {
         $('#cartcard').css('width', '30vw');
 
         let name = $(this).closest('div').find('.card-title').text();
-        let price = $(this).closest('div').parent().parent().find('.product-price').text();
+        let price = $(this).closest('div').parent().find('.product-price').text();
         let volume = $(this).closest('div').find('.card-text').text();
-        let amount = parseInt($(this).closest('div').parent().parent().find('.form-control').val(), 10);
+        let amount = parseInt($(this).closest('div').parent().find('.form-control').val(), 10);
 
         if (amount === 0 ) {
 

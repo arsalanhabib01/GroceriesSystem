@@ -27,7 +27,7 @@
         <h1 class="juices">Juices</h1>
         <tr th:each="juices :${juice}">
 
-            <div class="product">
+
             <div class="card" style="width: 12rem;">
                 <div class="product-price-div">
                     <p class="product-price"><td th:text="${juices.price}"></td> kr</p>
@@ -39,7 +39,6 @@
                     <label class="pass-quantity">Antal</label>
                     <input class="form-control" type="number" value="0" min="0">
                     <button class="add-to-cart"> Lägg i kundvagn </button>
-                </div>
             </div>
             </div>
         </tr>
