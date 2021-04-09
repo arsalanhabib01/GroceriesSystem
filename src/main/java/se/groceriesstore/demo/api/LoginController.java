@@ -10,4 +10,10 @@ public class LoginController {
     public String formlogin(){
         return "login";
     }
+
+
+    @RequestMapping("/newuser")
+    public String newUser(){
+        return "newuser";
+    }
 }

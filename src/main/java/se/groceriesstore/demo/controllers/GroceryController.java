@@ -147,13 +147,5 @@ public class GroceryController {
         model.addAttribute("toast", breadService.getAllToasts());
         return "rostbröd";
     }
-
-
-  /*   @RequestMapping("login")
-    public String showlogain(Model model){
-        model.addAttribute("login", productService.getLogin());
-        return "login";
-    }*/
-
 }
 

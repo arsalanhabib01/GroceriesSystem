@@ -2,20 +2,27 @@ package se.groceriesstore.demo.models;
 
 import java.util.Date;
 
-public class NewUser {
+public class User {
 
     String name;
-    Date date;
-    String Address;
+    Date birthday;
     String email;
     String password;
 
-    public NewUser(String name, Date date, String address, String email, String password) {
+    public User(String name, Date birthday, String email, String password) {
         this.name = name;
-        this.date = date;
-        this.Address = address;
+        this.birthday = birthday;
         this.email = email;
         this.password = password;
+    }
+
+    public User() {
+    }
+
+    public User(String name, String email, Date birthday) {
+        this.name = name;
+        this.email = email;
+        this.birthday = birthday;
     }
 
     public String getName() {
@@ -26,20 +33,12 @@ public class NewUser {
         this.name = name;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getAddress() {
-        return Address;
-    }
-
-    public void setAddress(String address) {
-        Address = address;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getEmail() {
