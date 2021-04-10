@@ -53,7 +53,6 @@ $(document).ready(function() {
     $('#cart.accordion').click(function() {
         $('#cartcard').css('width', '30vw');
     })
-
 })
 
 function calculateSum() {
