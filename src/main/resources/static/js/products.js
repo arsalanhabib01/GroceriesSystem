@@ -9,7 +9,7 @@ $(document).ready(function() {
     });
 
     $('.buy').click(function() {
-        postOrderToDB();
+        postCartToDB();
     })
 
     $('.add-to-cart').click(function() {
@@ -127,7 +127,7 @@ function checkIfMoreThanZero(q) {
     }
 }
 
-function postOrderToDB () {
+function postCartToDB () {
     for(let i = 0; i < cart.length; i++) {
 
 
