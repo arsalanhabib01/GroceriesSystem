@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("register")
+@RequestMapping("/api/")
 @Controller
 public class NewUserController {
     @Autowired
@@ -35,7 +35,7 @@ public class NewUserController {
         return userService.getAllUsers();
     }
 
-    @PostMapping
+    @PostMapping("newuser")
     public User addUser(@RequestBody User user){
         return userService.addUser(user);
     }
