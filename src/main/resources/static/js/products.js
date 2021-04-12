@@ -8,6 +8,10 @@ $(document).ready(function() {
         updateQuantity(this.value);
     });
 
+    $('.buy').click(function() {
+        postOrderToDB();
+    })
+
     $('.add-to-cart').click(function() {
 
         let exists = false;
@@ -121,6 +125,45 @@ function checkIfMoreThanZero(q) {
     else if (q < 1) {
         $('#cartcard').css('width', '10vw');
     }
+}
+
+function postOrderToDB () {
+    for(let i = 0; i < cart.length; i++) {
+
+
+           /* $order = {
+                "user_id":"test@test.se",
+                "delivery": "true",
+                "courier_id":"1",
+                "time": "NOW();",
+                "date": "NOW();"
+            };*/
+
+            $item = {
+                "order_id":"1337",
+                "product_name":cart[i][0],
+                "product_id":"3",
+                "amount":cart[i][3]
+            };
+
+
+            $.ajax({
+                type: 'POST',
+                url: '/addcart',
+                headers: {
+                    'Accept' : 'application/json',
+                    'Content-Type' : 'application/json'
+                },
+                data: JSON.stringify($item),
+                success: function () {
+                    alert('Order har lagts')
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        }
+
 }
 
 //OLD FUNCTIONS
