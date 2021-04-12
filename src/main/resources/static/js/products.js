@@ -34,13 +34,16 @@ $(document).ready(function() {
             }
 
             else if (cart.length > 0 ) {
-
+                var obj = JSON.parse(localStorage.getItem("itemStores"));
                 for (let i = 0; i < cart.length; i++) {
                     if (cart[i][0] === name) {
                         exists = true;
-                       cart[i][3] += parseInt(amount, 10);
-                       console.log(cart);
-                       updateCartItem(cart[i][0], cart[i][3]);
+                        cart[i][3] += parseInt(amount, 10);
+                        obj[i][3] += parseInt(amount, 10);
+                        localStorage.setItem("itemStores", JSON.stringify(obj));
+                        console.log("localstorage : " +obj);
+                        console.log("Array: " +cart);
+                        updateCartItem(cart[i][0], cart[i][3]);
                         }
                     }
 
@@ -97,23 +100,26 @@ function addToCart (name, price, volume, amount) {
     item = [name, price, volume, amount];
     cart.push(item);
     console.log(cart);
+    
+    store(item);
+    console.log(localStorage.getItem("itemStores"));
 
-    $('.theCart').append(`
-   
-            <div class="cartItem">
-                <button>
-                    <div class="itemName">
-                    ${name}
-                    </div>
-                    <div class="itemPrice">
-                    ${price}
-                     </div>
-                    <div class="itemAmount">
-                    ${amount}
-                    </div>
-                </button>
-            </div>
-`)}
+        $('.theCart').append(`
+
+                <div class="cartItem">
+                    <button>
+                        <div class="itemName">
+                        ${name}
+                        </div>
+                        <div class="itemPrice">
+                        ${price}
+                         </div>
+                        <div class="itemAmount">
+                        ${amount}
+                        </div>
+                    </button>
+                </div>
+    `)}
 
 
 
