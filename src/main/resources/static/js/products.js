@@ -46,6 +46,7 @@ $(document).ready(function() {
 
                 }
         }
+        $('.form-control').val('0');
         calculateSum();
     })
 
