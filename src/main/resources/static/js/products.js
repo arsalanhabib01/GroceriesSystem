@@ -54,6 +54,27 @@ $(document).ready(function() {
         calculateSum();
     })
 
+    $('.remove-from-cart').click(function() {
+        name = $(this).closest('div').find('.card-title').text();
+        price = $(this).closest('div').parent().find('.product-price').text();
+        volume = $(this).closest('div').find('.card-text').text();
+        amount = parseInt($(this).closest('div').parent().find('.form-control').val(), 10);
+
+        if (cart.length > 0 ) {
+            for (let cartItem of cart) {
+                if(cartItem[0] === name) {
+                    if (cartItem[3] - amount > 0) {
+                        updateCartItem(name, cartItem[3] -= amount)
+                    } else {
+                        //Remove product from cart
+                    }
+                }
+            }
+        }
+        $('.form-control').val('0');
+        calculateSum();
+    })
+
     //Making cart wide
     $('#cart.accordion').click(function() {
         $('#cartcard').css('width', '30vw');
@@ -114,9 +135,6 @@ function addToCart (name, price, volume, amount) {
                 </button>
             </div>
 `)}
-
-
-
 
 function checkIfMoreThanZero(q) {
     if (q >= 0) {
