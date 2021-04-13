@@ -73,7 +73,7 @@ $(document).ready(function() {
         if (obj.length > 0 ) {
                         //localstorage obj
                         for(let i=0; i<obj.length; i++){
-                            if(obj[i][0] == name) {
+                            if(obj[i][0] === name) {
                                 obj[i][3] -= parseInt(amount, 10);
                                 localStorage.setItem("itemStores", JSON.stringify(obj));
                                 console.log("localstorage : " + obj);
