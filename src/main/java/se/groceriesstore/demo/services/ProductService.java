@@ -88,9 +88,6 @@ public class ProductService {
         return breads;
     }
 
-    public void addCart(Cart cart) {
-        cartDAO.addCart(mapFromCart(cart));
-    }
 
     public void addFruit(Fruit fruit) {
         fruitsDAO.addFruit(mapFromFruit(fruit));
@@ -170,9 +167,6 @@ public class ProductService {
         return new BreadDTO(bread.getName(), bread.getPrice());
     }
 
-    private CartDTO mapFromCart(Cart cart) {
-        return new CartDTO(cart.getId(), cart.getOrder_id(), cart.getProduct_name(), cart.getProduct_id(), cart.getAmount());
-    }
 
     private Fruit mapToFruit (FruitDTO fruitDTO) {
         return new Fruit(fruitDTO.getId(), fruitDTO.getName(), fruitDTO.getPrice());

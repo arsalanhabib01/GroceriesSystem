@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import se.groceriesstore.demo.models.Cart;
-import se.groceriesstore.demo.services.ProductService;
+import se.groceriesstore.demo.services.CartService;
+
 
 @RestController
 @RequestMapping("/addcart")
@@ -15,11 +16,11 @@ import se.groceriesstore.demo.services.ProductService;
 public class CartController {
 
     @Autowired
-    ProductService productService;
+    CartService cartService;
 
     @PostMapping
     public void addCart(@RequestBody Cart cart) {
-        productService.addCart(cart);
+        cartService.addCart(cart);
     }
 
 }

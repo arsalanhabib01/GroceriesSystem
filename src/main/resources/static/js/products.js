@@ -26,6 +26,9 @@ $(document).ready(function() {
         let volume = $(this).closest('div').find('.card-text').text();
         let amount = parseInt($(this).closest('div').parent().find('.form-control').val(), 10);
 
+        console.log("hej", cart.length);
+
+
         if (amount === 0 ) {
 
         }
