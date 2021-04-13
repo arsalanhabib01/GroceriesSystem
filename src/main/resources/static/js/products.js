@@ -1,6 +1,7 @@
 let productQuantity = 0;
 let cart = [];
 let sum = 0;
+let obj;
 
 $(document).ready(function() {
 
@@ -37,13 +38,19 @@ $(document).ready(function() {
             }
 
             else if (cart.length > 0 ) {
-
+                obj = JSON.parse(localStorage.getItem("itemStores"));
                 for (let i = 0; i < cart.length; i++) {
                     if (cart[i][0] === name) {
                         exists = true;
-                       cart[i][3] += parseInt(amount, 10);
-                       console.log(cart);
-                       updateCartItem(cart[i][0], cart[i][3]);
+                        //localStorage object
+                        obj[i][3] += parseInt(amount, 10);
+                        localStorage.setItem("itemStores", JSON.stringify(obj));
+                        console.log("localstorage : " +obj);
+
+
+                        cart[i][3] += parseInt(amount, 10);
+                        console.log("Array: " +cart);
+                        updateCartItem(cart[i][0], cart[i][3]);
                         }
                     }
 
@@ -52,6 +59,40 @@ $(document).ready(function() {
                 }
 
                 }
+        }
+        $('.form-control').val('0');
+        calculateSum();
+    })
+
+    $('.remove-from-cart').click(function() {
+        name = $(this).closest('div').find('.card-title').text();
+        price = $(this).closest('div').parent().find('.product-price').text();
+        volume = $(this).closest('div').find('.card-text').text();
+        amount = parseInt($(this).closest('div').parent().find('.form-control').val(), 10);
+
+        if (cart.length > 0 ) {
+            obj = JSON.parse(localStorage.getItem("itemStores"));
+            for (let cartItem of cart) {
+                if(cartItem[0] === name) {
+                    if (cartItem[3] - amount > 0) {
+                     //   updateCartItem(name, cartItem[3] -= amount)
+
+                        //localstorage obj
+                        for(let i=0; i<obj.length; i++){
+                            if(obj[i][0] == name) {
+                                obj[i][3] -= parseInt(amount, 10);
+                                localStorage.setItem("itemStores", JSON.stringify(obj));
+                                console.log("localstorage : " + obj);
+
+
+                                updateCartItem(name, cartItem[3] -= amount)
+                            }
+                        }
+                    } else {
+                        //Remove product from cart
+                    }
+                }
+            }
         }
         $('.form-control').val('0');
         calculateSum();
@@ -101,25 +142,26 @@ function addToCart (name, price, volume, amount) {
     cart.push(item);
     console.log(cart);
 
-    $('.theCart').append(`
-   
-            <div class="cartItem">
-                <button>
-                    <div class="itemName">
-                    ${name}
-                    </div>
-                    <div class="itemPrice">
-                    ${price}
-                     </div>
-                    <div class="itemAmount">
-                    ${amount}
-                    </div>
-                </button>
-            </div>
-`)}
+    //localstorage
+    store(item);
+    console.log(localStorage.getItem("itemStores"));
 
+        $('.theCart').append(`
 
-
+                <div class="cartItem">
+                    <button>
+                        <div class="itemName">
+                        ${name}
+                        </div>
+                        <div class="itemPrice">
+                        ${price}
+                         </div>
+                        <div class="itemAmount">
+                        ${amount}
+                        </div>
+                    </button>
+                </div>
+    `)}
 
 function checkIfMoreThanZero(q) {
     if (q >= 0) {
