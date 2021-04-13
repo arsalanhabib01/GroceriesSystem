@@ -1,9 +1,11 @@
 let productQuantity = 0;
 let cart = [];
 let sum = 0;
-let obj;
+let obj = JSON.parse(localStorage.getItem("itemStores"));
 
 $(document).ready(function() {
+
+    alreadyExistInCart(obj);
 
     $('.form-control').change(function() {
         updateQuantity(this.value);
@@ -17,7 +19,7 @@ $(document).ready(function() {
 
         let exists = false;
 
-        $('#cartcard').css('width', '30vw');
+        $('#cartcard').css('width', '35vw');
 
         let name = $(this).closest('div').find('.card-title').text();
         let price = $(this).closest('div').parent().find('.product-price').text();
@@ -30,26 +32,24 @@ $(document).ready(function() {
 
         else if (amount > 0) {
 
-            if (cart.length === 0) {
+            if (obj === null) {
+                console.log("object not null");
                 addToCart(name, price, volume, amount);
             }
 
-            else if (cart.length > 0 ) {
-                obj = JSON.parse(localStorage.getItem("itemStores"));
-                for (let i = 0; i < cart.length; i++) {
-                    if (cart[i][0] === name) {
+            else if (obj.length > 0 ) {
+
+                for (let i = 0; i < obj.length; i++) {
+                    if (obj[i][0] === name) {
                         exists = true;
                         //localStorage object
                         obj[i][3] += parseInt(amount, 10);
                         localStorage.setItem("itemStores", JSON.stringify(obj));
                         console.log("localstorage : " +obj);
-
-
-                        cart[i][3] += parseInt(amount, 10);
-                        console.log("Array: " +cart);
-                        updateCartItem(cart[i][0], cart[i][3]);
+                        updateCartItem(obj[i][0], obj[i][3]);
                         }
-                    }
+
+                }
 
                 if (!exists) {
                     addToCart(name, price, volume, amount);
@@ -67,45 +67,36 @@ $(document).ready(function() {
         volume = $(this).closest('div').find('.card-text').text();
         amount = parseInt($(this).closest('div').parent().find('.form-control').val(), 10);
 
-        if (cart.length > 0 ) {
-            obj = JSON.parse(localStorage.getItem("itemStores"));
-            for (let cartItem of cart) {
-                if(cartItem[0] === name) {
-                    if (cartItem[3] - amount > 0) {
-                     //   updateCartItem(name, cartItem[3] -= amount)
-
+        if (obj.length > 0 ) {
                         //localstorage obj
                         for(let i=0; i<obj.length; i++){
                             if(obj[i][0] == name) {
                                 obj[i][3] -= parseInt(amount, 10);
                                 localStorage.setItem("itemStores", JSON.stringify(obj));
                                 console.log("localstorage : " + obj);
-
-
-                                updateCartItem(name, cartItem[3] -= amount)
+                                updateCartItem(name, obj[i][3])
                             }
                         }
                     } else {
                         //Remove product from cart
-                    }
-                }
-            }
         }
+
+
         $('.form-control').val('0');
         calculateSum();
     })
 
     //Making cart wide
     $('#cart.accordion').click(function() {
-        $('#cartcard').css('width', '30vw');
+        $('#cartcard').css('width', '35vw');
     })
 })
 
 function calculateSum() {
     let total = 0;
-    for (let i = 0; i < cart.length; i++) {
-        let sumPrice = cart[i][1];
-        let sumAmount = cart[i][3];
+    for (let i = 0; i < obj.length; i++) {
+        let sumPrice = obj[i][1];
+        let sumAmount = obj[i][3];
         sum = parseInt(sumPrice,10) * parseInt(sumAmount,10);
         total += sum;
     }
@@ -127,23 +118,48 @@ function updateCartItem(name, amount) {
 
     $(".itemName:contains('" + name + "')").closest('.cartItem').find('.itemAmount').text(amount);
 
-
-
 }
 
+function alreadyExistInCart (order){
+
+    if(order !== null){
+        for (let i = 0; i < order.length; i++) {
+
+            $('#cartcard').css('width', '35vw');
+
+            $('.theCart').append(`
+
+                <div class="cartItem">
+                    <button>
+                        <div class="itemName">
+                        ${order[i][0]}
+                        </div>
+                        <div class="itemPrice">
+                        ${order[i][1]}
+                         </div>
+                        <div class="itemAmount">
+                        ${order[i][3]}
+                        </div>
+                    </button>
+                </div> `)
+            calculateSum();
+        }
+    }
+
+}
 
 
 function addToCart (name, price, volume, amount) {
 
     item = [name, price, volume, amount];
-    cart.push(item);
-    console.log(cart);
 
-    //localstorage
-    store(item);
-    console.log(localStorage.getItem("itemStores"));
+            //localstorage
+            store(item);
+            obj = JSON.parse(localStorage.getItem("itemStores"));
+            console.log(obj);
 
-        $('.theCart').append(`
+            console.log(name, price, amount);
+            $('.theCart').append(`
 
                 <div class="cartItem">
                     <button>
@@ -157,12 +173,12 @@ function addToCart (name, price, volume, amount) {
                         ${amount}
                         </div>
                     </button>
-                </div>
-    `)}
+                </div> `)
+}
 
 function checkIfMoreThanZero(q) {
     if (q >= 0) {
-        $('#cartcard').css('width', '30vw');
+        $('#cartcard').css('width', '35vw');
     }
     else if (q < 1) {
         $('#cartcard').css('width', '10vw');
@@ -170,7 +186,7 @@ function checkIfMoreThanZero(q) {
 }
 
 function postCartToDB () {
-    for(let i = 0; i < cart.length; i++) {
+    for(let i = 0; i < obj.length; i++) {
 
 
            /* $order = {
@@ -183,9 +199,9 @@ function postCartToDB () {
 
             $item = {
                 "order_id":"1337",
-                "product_name":cart[i][0],
+                "product_name":obj[i][0],
                 "product_id":"3",
-                "amount":cart[i][3]
+                "amount":obj[i][3]
             };
 
 
@@ -206,35 +222,4 @@ function postCartToDB () {
             });
         }
 
-}
-
-//OLD FUNCTIONS
-$('.plus-button').on('click', function () {
-    number = $(this).closest('div').find('.product-quantity').val();
-    number++;
-    $(this).closest('div').find('.product-quantity').text(number);
-})
-
-
-$('.minus-button').on('click', function () {
-    number = $(this).closest('div').find('.product-quantity').val();
-    number--;
-    $(this).closest('div').find('.product-quantity').text(number);
-})
-
-
-function increaseQuantity() {
-    //$(this) pekade på funktionen och kunde därmed
-    //ej nå DOMens element. Därav gjort om struktur
-    //efter så som läraren gjort.
-
-    // productQuantity += 1;
-    //  $(this).closest('.card-body').find('.product-quantity').text(productQuantity);
-    //  console.log($(this));
-    // $('#quantity').text(productQuantity);
-
-}
-
-function decreaseQuantity() {
-    checkIfMoreThanZero(productQuantity);
 }

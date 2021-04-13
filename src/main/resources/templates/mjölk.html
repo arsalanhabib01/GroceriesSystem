@@ -6,6 +6,8 @@
 
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
+
+
 </head>
 
 <body class="text-center">
@@ -24,29 +26,38 @@
     <div class="card" id="midcard">
         <h1 class="milks">Mjölk</h1>
         <tr th:each="milks :${milk}">
+
+
             <div class="card" style="width: 12rem;">
                 <div class="product-price-div">
-                    <h4 class="product-price">
-                        <td th:text="${milks.price}"></td>kr
-                    </h4>
+                    <p class="product-price"><td th:text="${milks.price}"></td> kr</p>
                 </div>
                 <img th:src="@{${milks.image}}"  class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><td th:text="${milks.name}"></td></h5>
                     <p class="card-text"><td th:text="${milks.volume}"></td></p>
-                    <button class="btn btn-primary minus-button">-</button>
-                    <p class="product-quantity">0</p>
-                    <button class="btn btn-primary plus-button">+</button>
+                    <label class="pass-quantity">Antal</label>
+                    <input class="form-control" type="number" value="0" min="0">
+                    <button class="add-to-cart btn-success"> Lägg till </button>
+                    <button class="remove-from-cart btn-danger"> Ta bort </button>
                 </div>
             </div>
         </tr>
-
     </div>
+
+    <div id="cartcard" class="notActive">
+        <div th:insert="fragments/cartmenu :: cartmenu"></div>
+    </div>
+
+
 </div>
 <!--
 <a class="btn btn-dark" th:href="@{index}">Tillbaka till Startsidan</a>
 -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="/js/main.js"></script>
 <script src="/js/products.js"></script>
+<script src="/js/localstorage.js"></script>
 </body>
 </html>
