@@ -26,7 +26,6 @@ $(document).ready(function() {
         let volume = $(this).closest('div').find('.card-text').text();
         let amount = parseInt($(this).closest('div').parent().find('.form-control').val(), 10);
 
-        console.log("hej", cart.length);
 
 
         if (amount === 0 ) {
@@ -77,12 +76,26 @@ $(document).ready(function() {
                                 obj[i][3] -= parseInt(amount, 10);
                                 localStorage.setItem("itemStores", JSON.stringify(obj));
                                 console.log("localstorage : " + obj);
-                                updateCartItem(name, obj[i][3])
+                                updateCartItem(name, obj[i][3]);
+
+
+                                //Remove product from cart
+                                              if(obj[i][3] <= 0){
+                                                  var index = obj.indexOf(obj[i]);
+                                                  console.log("zero : ", obj);
+                                                  if (index > -1) {
+                                                      obj.splice(index, 1);
+
+                                                      localStorage.setItem("itemStores", JSON.stringify(obj));
+                                                      //check these lines
+                                                      var $row = $(this).closest('div').find('.card-text');
+                                                      $row.remove();
+                                                  }
+
+                                              }
                             }
                         }
-                    } else {
-                        //Remove product from cart
-        }
+                    }
 
 
         $('.form-control').val('0');
