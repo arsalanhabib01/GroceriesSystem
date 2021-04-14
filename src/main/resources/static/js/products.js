@@ -84,14 +84,16 @@ $(document).ready(function() {
                         var indexOfProductwithZeroAmount = obj.indexOf(obj[i]);
                         console.log("zero : ", obj);
 
+                        var $row =  $(".itemName:contains('" + obj[i][0] + "')").closest('.cartItem');
+                        $row.remove();
+
                         if (indexOfProductwithZeroAmount > -1) {
                             obj.splice(indexOfProductwithZeroAmount, 1);
 
                             //
                             localStorage.setItem("itemStores", JSON.stringify(obj));
 
-                            //var $row =  $(".itemName:contains('" + index[0] + "')").closest('.cartItem');
-                            //$row.remove();
+
                         }
 
                     }
