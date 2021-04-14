@@ -35,11 +35,11 @@ $(document).ready(function() {
         else if (amount > 0) {
 
             if (obj === null) {
-                console.log("object not null");
+                console.log("obj is null: localStorage itemStores is empty");
                 addToCart(name, price, volume, amount);
             }
 
-            else if (obj.length > 0 ) {
+            else if (obj.length >= 0 ) {
 
                 for (let i = 0; i < obj.length; i++) {
                     if (obj[i][0] === name) {
@@ -69,33 +69,37 @@ $(document).ready(function() {
         volume = $(this).closest('div').find('.card-text').text();
         amount = parseInt($(this).closest('div').parent().find('.form-control').val(), 10);
 
-        if (obj.length > 0 ) {
-                        //localstorage obj
-                        for(let i=0; i<obj.length; i++){
-                            if(obj[i][0] === name) {
-                                obj[i][3] -= parseInt(amount, 10);
-                                localStorage.setItem("itemStores", JSON.stringify(obj));
-                                console.log("localstorage : " + obj);
-                                updateCartItem(name, obj[i][3]);
+        if (obj.length > 0) {
+            //localstorage obj
+            for (let i = 0; i < obj.length; i++) {
+                if (obj[i][0] === name) {
+                    obj[i][3] -= parseInt(amount, 10);
+                    localStorage.setItem("itemStores", JSON.stringify(obj));
+                    console.log("localstorage : " + obj);
+                    updateCartItem(name, obj[i][3]);
 
 
-                                //Remove product from cart
-                                              if(obj[i][3] <= 0){
-                                                  var index = obj.indexOf(obj[i]);
-                                                  console.log("zero : ", obj);
-                                                  if (index > -1) {
-                                                      obj.splice(index, 1);
+                    //Remove product from cart
+                    if (obj[i][3] <= 0) {
+                        var indexOfProductwithZeroAmount = obj.indexOf(obj[i]);
+                        console.log("zero : ", obj);
 
-                                                      localStorage.setItem("itemStores", JSON.stringify(obj));
-                                                      //check these lines
-                                                      var $row = $(this).closest('div').find('.card-text');
-                                                      $row.remove();
-                                                  }
+                        if (indexOfProductwithZeroAmount > -1) {
+                            obj.splice(indexOfProductwithZeroAmount, 1);
 
-                                              }
-                            }
+                            //
+                            localStorage.setItem("itemStores", JSON.stringify(obj));
+
+                            //var $row =  $(".itemName:contains('" + index[0] + "')").closest('.cartItem');
+                            //$row.remove();
                         }
+
                     }
+                }
+            }
+
+        }
+
 
 
         $('.form-control').val('0');
@@ -172,7 +176,7 @@ function addToCart (name, price, volume, amount) {
             //localstorage
             store(item);
             obj = JSON.parse(localStorage.getItem("itemStores"));
-            console.log(obj);
+            console.log("this is: obj: " + obj);
 
             console.log(name, price, amount);
             $('.theCart').append(`
