@@ -157,8 +157,6 @@ DROP TABLE IF EXISTS orders;
 CREATE TABLE orders (
     order_id SERIAL,
     user_id varchar(255),
-    delivery BOOLEAN,
-    courier_id varchar(255),
     time time,
     date date,
     status varchar(255),

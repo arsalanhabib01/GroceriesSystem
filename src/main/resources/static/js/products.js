@@ -12,7 +12,13 @@ $(document).ready(function() {
     });
 
     $('.buy').click(function() {
-        postCartToDB();
+        let mail = $('#customerMail').val();
+        if(ValidateEmail(mail)) {
+            postCartToDB();
+        }
+        else {
+            alert("Mail is invalid");
+        }
     })
 
     $('.add-to-cart').click(function() {
@@ -113,6 +119,18 @@ $(document).ready(function() {
         $('#cartcard').css('width', '35vw');
     })
 })
+
+function ValidateEmail(mail) {
+
+    if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(mail)) {
+        $('.savedMail').remove();
+        $('.salong').append(`<p class="savedMail"><h5>Mail sparad.</h5></p>`);
+        return (true)
+    }
+    $('.savedMail').remove();
+    $('.salong').append(`<p class="savedMail"><h5>*Ej giltig mailadress!*</h5></p>`);
+    return (false)
+}
 
 function calculateSum() {
     let total = 0;
