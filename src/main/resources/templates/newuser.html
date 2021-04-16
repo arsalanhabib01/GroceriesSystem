@@ -3,36 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Ny Användare</title>
-
     <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
     <script rel="script" type="text/javascript" src="/webjars/jquery/3.1.1/jquery.min.js"></script>
     <script rel="script" type="text/javascript" src="/js/newuser.js"></script>
-
 </head>
 <body class="text-center">
 <h1>Välkommen till Groceries Store!</h1>
-
 <div class="container">
     <div th:replace="fragments/navbar :: navbarHome"></div>
 </div>
-
 <div class="border-light">
-
     <h2>Ny Användare</h2>
     <tbody>
     <tr th:each="user, iStat : ${newuser}">
         <td> th:text="${newuser.name}</td>
         <td> th:text="${newuser.username}</td>
-        <td> th:text="${newuser.birthday}</td>
-        <td> th:text="${newuser.password}"</td>
+        <td> th:text="${newuser.address}</td>
+        <td> th:text="${newuser.birthday}"</td>
     </tr>
     </tbody>
     <form th:action="@{/newuser}"  method="POST">
         Namn:<br> <input type="text" value="" id="name" placeholder="Namn och efternamn"/><br>
-        Användnamn:  <br><input type="text" value="" id="email" email="username" placeholder="Mailaddress"/> <br>
-        Födelsedag:  <br><input type="date" value="" id="birthday" th:datetime="date"/> <br>
-        Lösenord:<br> <input type="password" value="" id="password" password="password" placeholder="Lösenord"/><br>
+        Användnamn:  <br><input type="text" value="" id="email"  placeholder="Mailaddress"/> <br>
+        Adress:  <br><input type="text" value="" id="address" placeholder="Adress"/> <br>
+        Födelsedag:<br><input type="date" value="" id="birthday" th:datetime="date"/> <br>
         <br> <button id="save-user" class="btn-danger loging" type="submit">Skafa ny användare</button><br>
     </form>
 </div>

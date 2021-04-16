@@ -1,28 +1,21 @@
 package se.groceriesstore.demo.models;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-
 public class User {
-
     String name;
-    Date birthday;
     String email;
-    String password;
-
-    public User(String name, Date birthday, String email, String password) {
+    Date birthday;
+    String address;
+    public User(@JsonProperty("name") String name,
+                @JsonProperty("email") String email,
+                @JsonProperty("birthday") Date birthday,
+                @JsonProperty("address") String address) {
         this.name = name;
-        this.birthday = birthday;
         this.email = email;
-        this.password = password;
+        this.birthday = birthday;
+        this.address = address;
     }
-
     public User() {
-    }
-
-    public User(String name, String email, Date birthday) {
-        this.name = name;
-        this.email = email;
-        this.birthday = birthday;
     }
 
     public String getName() {
@@ -49,11 +42,11 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAddress() {
+        return address;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

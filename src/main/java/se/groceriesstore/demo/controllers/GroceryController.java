@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import se.groceriesstore.demo.services.BreadService;
 import se.groceriesstore.demo.services.DrinkService;
 import se.groceriesstore.demo.services.ProductService;
+import se.groceriesstore.demo.services.UserService;
 
 @Controller
 public class GroceryController {
@@ -150,6 +151,20 @@ public class GroceryController {
         model.addAttribute("toast", breadService.getAllToasts());
 
         return "rostbröd";
+    }
+
+    @Autowired
+    UserService userService;
+
+    /* TEST Controller to login and new user*/
+    @RequestMapping("login")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping("newuser")
+    public String newUser() {
+        return "newuser";
     }
 }
 

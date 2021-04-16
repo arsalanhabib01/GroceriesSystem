@@ -1,12 +1,12 @@
 package se.groceriesstore.demo.services;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.groceriesstore.demo.dao.UserDAO;
-import se.groceriesstore.demo.models.User;
 import se.groceriesstore.demo.models.dto.UserDTO;
-
+import se.groceriesstore.demo.models.User;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,8 +32,8 @@ public class UserService {
     }
 
 
-    public User getUserByEmail(String email) {
-        Optional<UserDTO> maybeUserDTO = userDAO.getUserByEmail(email);
+    public User getUserById(String email) {
+        Optional<UserDTO> maybeUserDTO = userDAO.getUserById(email);
         if (maybeUserDTO.isPresent()) {
             UserDTO userDTO = maybeUserDTO.get();
             return mapToUser(userDTO);
@@ -42,11 +42,11 @@ public class UserService {
     }
 
     private User mapToUser(UserDTO userDTO) {
-        return new User(userDTO.getName(), userDTO.getEmail(), userDTO.getBirthday());
+        return new User(userDTO.getName(), userDTO.getEmail(), userDTO.getBirthday(), userDTO.getAddress());
     }
 
     public UserDTO mapFromUser(User newUser) {
-        return new UserDTO(newUser.getName(), newUser.getEmail(), newUser.getBirthday(), newUser.getPassword());
+        return new UserDTO(newUser.getName(), newUser.getEmail(), newUser.getBirthday(), newUser.getAddress());
     }
     //WORKING
     public List<User> getAllUsers() {
@@ -60,20 +60,31 @@ public class UserService {
 
     public User updateUser(User newUser, String email) {
 
-        User userToUpdate = getUserByEmail(email);
+        User userToUpdate = getUserById(email);
         if(userToUpdate != null){
             userToUpdate.setName(newUser.getName());
-            userToUpdate.setPassword(newUser.getPassword());
+            userToUpdate.setBirthday(newUser.getBirthday());
+            userToUpdate.setAddress(newUser.getAddress());
         }else {
             userToUpdate.setEmail(email);
         }
         UserDTO updateUser = userDAO.addUser(mapFromUser(userToUpdate));
         return mapToUser(updateUser);
     }
-/*
-    public void deleteUser(String email) {
-       UserDAO.deleteUser(email);
-    }
-    */
 
+
+    public void deleteUser(String email) {
+        userDAO.deleteUser(email);
+    }
+
+
+    public List<User> getAllUser() {
+        List<User> users = new ArrayList<>();
+        for(UserDTO userDTO: userDAO.getAllUser()){
+            User user = mapToUser(userDTO);
+            users.add(user);
+            System.out.println(users);
+        }
+        return users;
+    }
 }

@@ -3,13 +3,13 @@ $(function () {
     let $name = $('#name');
     let $email= $('#email');
     let $birthday = $('#birthday');
-    let $password = $('#password');
+    let $address = $('#address');
     $('#save-user').on('click', function () {
         $user = {
             "name":$name.val(),
             "email":$email.val(),
             "birthday":$birthday.val(),
-            "password":$password.val()
+            "address":$address.val()
         };
         $.ajax({
             type: 'POST',

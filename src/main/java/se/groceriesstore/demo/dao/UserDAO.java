@@ -15,6 +15,10 @@ public class UserDAO {
         this.userRepository = userRepository;
     }
 
+    public void deleteUser(String email) {
+        userRepository.deleteById(email);
+    }
+
 
     public UserDTO addUser(UserDTO userDTO){
         userRepository.save(userDTO);
@@ -22,7 +26,7 @@ public class UserDAO {
     }
     public void findUserById(String email){ userRepository.findById(email); }
 
-    public Optional<UserDTO> getUserByEmail(String email) {
+    public Optional<UserDTO> getUserById(String email) {
         return userRepository.findById(email);
     }
 
