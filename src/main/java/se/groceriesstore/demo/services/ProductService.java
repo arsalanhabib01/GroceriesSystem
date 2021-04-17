@@ -100,8 +100,10 @@ public class ProductService {
     public void addDrink(Drink drink) {
         drinksDAO.addDrink(mapFromDrink(drink));
     }
-    public void addBread(Bread bread) {
-        breadsDAO.addBread(mapFromBread(bread));
+
+    public Bread addBread(Bread bread) {
+        BreadDTO newBreadDTO = breadsDAO.addBread(mapFromBread(bread));
+        return mapToBread(newBreadDTO);
     }
 
     public Fruit getFruitById(Integer id) {

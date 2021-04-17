@@ -31,8 +31,8 @@ public class BreadController {
     }
 
     @PostMapping
-    public void addBread(@RequestBody Bread bread) {
-        productService.addBread(bread);
+    public Bread addBread(@RequestBody Bread bread) {
+        return productService.addBread(bread);
     }
 
     @DeleteMapping("/{id}")

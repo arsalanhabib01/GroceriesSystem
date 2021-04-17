@@ -15,8 +15,8 @@ public class BreadsDAO {
         this.repositoryBread = repositoryBread;
     }
 
-    public void addBread(BreadDTO breadDTO) {
-        repositoryBread.save(breadDTO);
+    public BreadDTO addBread(BreadDTO breadDTO) {
+        return repositoryBread.save(breadDTO);
     }
 
     public Iterable<BreadDTO> getAllBreads() {

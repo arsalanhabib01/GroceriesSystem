@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import se.groceriesstore.demo.dao.*;
@@ -14,8 +14,7 @@ import se.groceriesstore.demo.models.dto.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Optional;
 
 @ExtendWith(MockitoExtension.class)
 class ProductServiceTest {
@@ -104,7 +103,14 @@ class ProductServiceTest {
     }
 
     @Test
-    void addBread() {
+    void addBread_ShouldAddBreadAndReturnCorrectName() {
+        BreadDTO breadDTOFromDatabase = new BreadDTO("Roast'n Toast", 24);
+        Bread newBread = new Bread(null, "Roast'n Toast", 24);
+
+        Mockito.when(breadsDAO.addBread(ArgumentMatchers.any(BreadDTO.class))).thenReturn(breadDTOFromDatabase);
+        Bread createdBread = productService.addBread(newBread);
+
+        Assertions.assertThat(newBread.getName()).isEqualTo(createdBread.getName());
     }
 
     @Test
@@ -120,7 +126,25 @@ class ProductServiceTest {
     }
 
     @Test
-    void getBreadById() {
+    void getBreadById_ShouldFindBreadById() {
+        BreadDTO breadDTOFromDatabase = new BreadDTO(1, 24, "Roast'n Toast");
+        Bread expectedBread = new Bread(1, "Roast'n Toast", 24);
+
+        Mockito.when(breadsDAO.findBreadById(1)).thenReturn(Optional.of(breadDTOFromDatabase));
+        Bread actualBread = productService.getBreadById(1);
+
+        Assertions.assertThat(actualBread.getId()).isEqualTo(expectedBread.getId());
+    }
+
+    @Test
+    void getBreadById_ShouldFindBreadWithCorrectName() {
+        BreadDTO breadDTOFromDatabase = new BreadDTO(1, 24, "Roast'n Toast");
+        Bread expectedBread = new Bread(1, "Roast'n Toast", 24);
+
+        Mockito.when(breadsDAO.findBreadById(1)).thenReturn(Optional.of(breadDTOFromDatabase));
+        Bread actualBread = productService.getBreadById(1);
+
+        Assertions.assertThat(actualBread.getName()).isEqualTo(expectedBread.getName());
     }
 
     @Test
@@ -136,6 +160,14 @@ class ProductServiceTest {
     }
 
     @Test
-    void deleteBread() {
+    void deleteBread_ShouldInvokeDeleteBread() {
+        productService.deleteBread(1);
+        Mockito.verify(breadsDAO, Mockito.times(1)).deleteBread(1);
+    }
+
+    @Test
+    void deleteBread_ShouldNotInvokeAddBread() {
+        productService.deleteBread(1);
+        Mockito.verify(breadsDAO, Mockito.times(0)).addBread(new BreadDTO(null, 1, null));
     }
 }
