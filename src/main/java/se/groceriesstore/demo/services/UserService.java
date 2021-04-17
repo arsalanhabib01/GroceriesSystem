@@ -28,6 +28,7 @@ public class UserService {
 
     public User addUser(User newUser) {
         UserDTO newUserDTO = userDAO.addUser(mapFromUser(newUser));
+
         return mapToUser(newUserDTO);
     }
 
@@ -83,7 +84,6 @@ public class UserService {
         for(UserDTO userDTO: userDAO.getAllUser()){
             User user = mapToUser(userDTO);
             users.add(user);
-            System.out.println(users);
         }
         return users;
     }
