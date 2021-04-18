@@ -89,16 +89,19 @@ public class ProductService {
     }
 
 
-    public void addFruit(Fruit fruit) {
-        fruitsDAO.addFruit(mapFromFruit(fruit));
+    public Fruit addFruit(Fruit fruit) {
+        FruitDTO newFruitDTO = fruitsDAO.addFruit(mapFromFruit(fruit));
+        return mapToFruit(newFruitDTO);
     }
 
-    public void addVegetable(Vegetable vegetable) {
-        vegetablesDAO.addVegetable(mapFromVegetable(vegetable));
+    public Vegetable addVegetable(Vegetable vegetable) {
+        VegetableDTO newVegetableDTO = vegetablesDAO.addVegetable(mapFromVegetable(vegetable));
+        return mapToVegetable(newVegetableDTO);
     }
 
-    public void addDrink(Drink drink) {
-        drinksDAO.addDrink(mapFromDrink(drink));
+    public Drink addDrink(Drink drink) {
+        DrinkDTO newDrinkDTO = drinksDAO.addDrink(mapFromDrink(drink));
+        return mapToDrink(newDrinkDTO);
     }
 
     public Bread addBread(Bread bread) {

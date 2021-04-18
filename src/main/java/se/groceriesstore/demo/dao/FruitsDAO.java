@@ -16,8 +16,8 @@ public class FruitsDAO {
         this.repositoryFruit = repositoryFruit;
     }
 
-    public void addFruit(FruitDTO fruitDTO) {
-        repositoryFruit.save(fruitDTO);
+    public FruitDTO addFruit(FruitDTO fruitDTO) {
+        return repositoryFruit.save(fruitDTO);
     }
 
     public Iterable<FruitDTO> getAllFruits() {

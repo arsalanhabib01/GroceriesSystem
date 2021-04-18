@@ -25,8 +25,8 @@ public class VegetableController {
     }
 
     @PostMapping
-    public void addVegetable(@RequestBody Vegetable vegetable) {
-        productService.addVegetable(vegetable);
+    public Vegetable addVegetable(@RequestBody Vegetable vegetable) {
+        return productService.addVegetable(vegetable);
     }
 
     @DeleteMapping("/{id}")

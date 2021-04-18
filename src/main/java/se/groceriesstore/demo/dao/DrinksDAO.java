@@ -15,8 +15,8 @@ public class DrinksDAO {
         this.repositoryDrink = repositoryDrink;
     }
 
-    public void addDrink(DrinkDTO drinkDTO) {
-        repositoryDrink.save(drinkDTO);
+    public DrinkDTO addDrink(DrinkDTO drinkDTO) {
+        return repositoryDrink.save(drinkDTO);
     }
 
     public Iterable<DrinkDTO> getAllDrinks() {

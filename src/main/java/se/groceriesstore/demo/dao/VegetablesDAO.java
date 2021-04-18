@@ -15,8 +15,8 @@ public class VegetablesDAO {
         this.repositoryVegetable = repositoryVegetable;
     }
 
-    public void addVegetable(VegetableDTO vegetableDTO) {
-        repositoryVegetable.save(vegetableDTO);
+    public VegetableDTO addVegetable(VegetableDTO vegetableDTO) {
+        return repositoryVegetable.save(vegetableDTO);
     }
 
     public Iterable<VegetableDTO> getAllVegetables() {

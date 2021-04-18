@@ -25,8 +25,8 @@ public class FruitController {
     }
 
     @PostMapping
-    public void addFruit(@RequestBody Fruit fruit) {
-        productService.addFruit(fruit);
+    public Fruit addFruit(@RequestBody Fruit fruit) {
+        return productService.addFruit(fruit);
     }
 
     @DeleteMapping("/{id}")

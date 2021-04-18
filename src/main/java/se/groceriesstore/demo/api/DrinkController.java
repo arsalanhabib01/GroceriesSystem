@@ -34,8 +34,8 @@ public class DrinkController {
     }
 
     @PostMapping()
-    public void addDrink(@RequestBody Drink drink) {
-        productService.addDrink(drink);
+    public Drink addDrink(@RequestBody Drink drink) {
+        return productService.addDrink(drink);
     }
 
     @DeleteMapping("/{id}")
