@@ -14,20 +14,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 @ExtendWith(MockitoExtension.class)
 class UserServiceTest {
-
     public static UserDAO userDAO;
     public UserService userService;
     public List<UserDTO> allUsers;
-
     @BeforeAll
     public static void initAll(){
         userDAO = Mockito.mock(UserDAO.class);
-
     }
-
     @BeforeEach
     public void init(){
         Date date = new java.sql.Date(2000-01-01);
@@ -37,7 +32,6 @@ class UserServiceTest {
         allUsers.add(new UserDTO("Maria","maria@gmail.com", date,"Kungsgatan, 2"));
         allUsers.add(new UserDTO("Mary","mary@gmail.com", date,"Kungsgatan, 3"));
     }
-
     @Test
     void getAllUser_ShouldReturnUsers() {
         Date date = new java.sql.Date(2000-01-01);
@@ -45,12 +39,9 @@ class UserServiceTest {
         expectedUsers.add(new User("joao","joao@gmail.com", date,"Kungsgatan, 1"));
         expectedUsers.add(new User("Maria","maria@gmail.com", date,"Kungsgatan, 2"));
         expectedUsers.add(new User("Mary","mary@gmail.com", date,"Kungsgatan, 3"));
-
         Mockito.when(userDAO.getAllUser()).thenReturn(allUsers);
         List<User> actualUsers = userService.getAllUsers();
-
         Assertions.assertThat(actualUsers.size()).isEqualTo(expectedUsers.size());
-
     }
     @Test
     void addUser_ShouldAddUserAndReturnCorrectEmail() {
@@ -61,7 +52,6 @@ class UserServiceTest {
         User createdUser = userService.addUser(newUser);
         Assertions.assertThat(newUser.getEmail()).isEqualTo(createdUser.getEmail());
     }
-
     @Test
     void addUser_ShouldAddUserAndReturnCorrectName() {
         Date date = new java.sql.Date(2000-01-01);
@@ -89,11 +79,6 @@ class UserServiceTest {
         User createdUser = userService.addUser(newUser);
         Assertions.assertThat(newUser.getAddress()).isEqualTo(createdUser.getAddress());
     }
-
-    @Test
-    void getUser() {
-    }
-
     @Test
     void getUserById_ShouldFindUserByEmail() {
         String email = "joao@gmail.com";
@@ -103,7 +88,6 @@ class UserServiceTest {
         Mockito.when(userDAO.getUserById(email)).thenReturn(Optional.of(userDTOFromBD));
         User actualUser = userService.getUserById(email);
         Assertions.assertThat(actualUser.getEmail()).isEqualTo(expectedUser.getEmail());
-
     }
     @Test
     void getUserById_ShouldFindUserByName() {
@@ -115,7 +99,6 @@ class UserServiceTest {
         User actualUser = userService.getUserById(email);
         Assertions.assertThat(actualUser.getName()).isEqualTo(expectedUser.getName());
     }
-
     @Test
     void getUserById_ShouldFindUserByAdress() {
         String email = "joao@gmail.com";
@@ -126,8 +109,6 @@ class UserServiceTest {
         User actualUser = userService.getUserById(email);
         Assertions.assertThat(actualUser.getAddress()).isEqualTo(expectedUser.getAddress());
     }
-
-
     @Test
     void getUserById_ShouldFindUserByBirthDay() {
         String email = "joao@gmail.com";
@@ -138,20 +119,30 @@ class UserServiceTest {
         User actualUser = userService.getUserById(email);
         Assertions.assertThat(actualUser.getBirthday()).isEqualTo(expectedUser.getBirthday());
     }
-
     @Test
-    void mapFromUser() {
+    void deleteUser_ShouldInvokeDeleteUser() {
+        String email = "teste@delete.com";
+        userService.deleteUser(email);
+        Mockito.verify(userDAO,Mockito.times(1)).deleteUser(email);
     }
-
     @Test
-    void getAllUsers() {
+    void deleteUser_Should_NotInvokeAddUser(){
+        String email = "test@test.com";
+        userService.deleteUser(email);
+        Mockito.verify(userDAO, Mockito.times(0)).addUser((new UserDTO(null,null,null,null)));
+
     }
-
     @Test
-    void updateUser() {
-    }
-
-    @Test
-    void deleteUser() {
+    void updateUser_ShouldChangeUser() {
+        Date date = new java.sql.Date(2000-01-01);
+        Date dateToUpdate = new java.sql.Date(1970-02-03);
+        String email = "joao@gmail.com";
+        User newUser = new User("joao",email, date,"Kungsgatan, 1");
+        UserDTO userDTOFromBDFirstIteration = new UserDTO("Mary",email, dateToUpdate,"Kungsgatan, 3");
+        UserDTO userDTOFromBDSecondIteration = new UserDTO("joao",email, date,"Kungsgatan, 1");
+        Mockito.when(userDAO.getUserById(email)).thenReturn(Optional.of(userDTOFromBDFirstIteration));
+        Mockito.when(userDAO.addUser(ArgumentMatchers.any(UserDTO.class))).thenReturn(userDTOFromBDSecondIteration);
+        User actualUser = userService.updateUser(newUser,email);
+        Assertions.assertThat(actualUser.getName()).isEqualTo(newUser.getName());
     }
 }
