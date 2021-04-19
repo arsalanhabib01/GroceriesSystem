@@ -14,8 +14,13 @@ public class CartService {
         this.cartDAO = cartDAO;
     }
 
-    public void addCart(Cart cart) {
-        cartDAO.addCart(mapFromCart(cart));
+    public Cart addCart(Cart cart) {
+        CartDTO newCartDTO = cartDAO.addCart(mapFromCart(cart));
+        return mapToCart(newCartDTO);
+    }
+
+    private Cart mapToCart(CartDTO newCartDTO) {
+        return new Cart(newCartDTO.getId(), newCartDTO.getOrder_id(), newCartDTO.getProduct_name(), newCartDTO.getProduct_id(), newCartDTO.getAmount());
     }
 
     private CartDTO mapFromCart(Cart cart) {

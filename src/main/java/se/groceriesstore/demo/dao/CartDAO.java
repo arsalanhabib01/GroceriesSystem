@@ -14,8 +14,8 @@ private final CartRepository cartRepository;
         this.cartRepository = cartRepository;
     }
 
-    public void addCart(CartDTO cartDTO) {
-        cartRepository.save(cartDTO);
+    public CartDTO addCart(CartDTO cartDTO) {
+        return cartRepository.save(cartDTO);
     }
 
 }
