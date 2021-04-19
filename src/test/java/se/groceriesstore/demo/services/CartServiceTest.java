@@ -31,14 +31,31 @@ class CartServiceTest {
     }
 
     @Test
-    void addCart_ShouldAddNewCartAndReturnAllInCart() {
+    void addCart_ShouldAddNewCartAndSameProductName() {
         CartDTO cartDTOFromDatabase = new CartDTO(1, 99, "Mellanmjölk", 2, 3);
+        CartDTO wrongCartDTOFromDatabase = new CartDTO(2, 92, "Lättmjölk", 1, 3);
         Cart newCart = new Cart(1, 99, "Mellanmjölk", 2, 3 );
 
         Mockito.when(cartDAO.addCart(ArgumentMatchers.any(CartDTO.class))).thenReturn(cartDTOFromDatabase);
+        //Mockito.when(cartDAO.addCart(ArgumentMatchers.any(CartDTO.class))).thenReturn(wrongCartDTOFromDatabase);
         Cart createdCart = cartService.addCart(newCart);
 
         Assertions.assertThat(newCart.getProduct_name()).isEqualTo(createdCart.getProduct_name());
+        //Assertions.assertThat(newCart.getProduct_name()).isNotEqualTo(createdCart.getProduct_name());
     }
+
+    @Test
+    void addCart_ShouldAddNewCartAndWrongProductName() {
+        CartDTO wrongCartDTOFromDatabase = new CartDTO(2, 92, "Lättmjölk", 1, 3);
+        Cart newCart = new Cart(1, 99, "Mellanmjölk", 2, 3 );
+
+        Mockito.when(cartDAO.addCart(ArgumentMatchers.any(CartDTO.class))).thenReturn(wrongCartDTOFromDatabase);
+        Cart createdCart = cartService.addCart(newCart);
+
+        Assertions.assertThat(newCart.getProduct_name()).isNotEqualTo(createdCart.getProduct_name());
+    }
+
+
+
 
 }
