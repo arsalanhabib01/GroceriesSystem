@@ -37,11 +37,9 @@ class CartServiceTest {
         Cart newCart = new Cart(1, 99, "Mellanmjölk", 2, 3 );
 
         Mockito.when(cartDAO.addCart(ArgumentMatchers.any(CartDTO.class))).thenReturn(cartDTOFromDatabase);
-        //Mockito.when(cartDAO.addCart(ArgumentMatchers.any(CartDTO.class))).thenReturn(wrongCartDTOFromDatabase);
         Cart createdCart = cartService.addCart(newCart);
 
         Assertions.assertThat(newCart.getProduct_name()).isEqualTo(createdCart.getProduct_name());
-        //Assertions.assertThat(newCart.getProduct_name()).isNotEqualTo(createdCart.getProduct_name());
     }
 
     @Test
