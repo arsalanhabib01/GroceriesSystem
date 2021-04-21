@@ -1,6 +1,7 @@
 package se.groceriesstore.demo.dao.DrinkDAO;
 
 import org.springframework.stereotype.Repository;
+import se.groceriesstore.demo.models.Drinks.Kaffe;
 import se.groceriesstore.demo.models.dto.DrinksDTO.KaffeDTO;
 import se.groceriesstore.demo.repository.DrinksRepository.KaffeRepository;
 
@@ -15,8 +16,8 @@ public class KaffesDAO {
         this.repositoryKaffe = repositoryKaffe;
     }
 
-    public void addKaffe(KaffeDTO kaffeDTO) {
-        repositoryKaffe.save(kaffeDTO);
+    public KaffeDTO addKaffe(KaffeDTO kaffeDTO) {
+        return repositoryKaffe.save(kaffeDTO);
     }
 
     public Iterable<KaffeDTO> getAllKaffes() {

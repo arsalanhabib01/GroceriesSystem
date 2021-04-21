@@ -23,6 +23,12 @@ public class KaffeDTO {
         this.volume = volume;
     }
 
+    public KaffeDTO(Integer id, int price, String name) {
+        this.id = id;
+        this.price = price;
+        this.name = name;
+    }
+
 
     public KaffeDTO() {
     }

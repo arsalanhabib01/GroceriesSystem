@@ -27,7 +27,7 @@ public class DrinkService {
     private final JuicesDAO juicesDAO;
 
     public DrinkService(KaffesDAO kaffesDAO, MilksDAO milksDAO,
-                        SodasDAO sodasDAO, JuicesDAO juicesDAO){
+                        SodasDAO sodasDAO, JuicesDAO juicesDAO) {
         this.kaffesDAO = kaffesDAO;
         this.milksDAO = milksDAO;
         this.sodasDAO = sodasDAO;
@@ -90,8 +90,9 @@ public class DrinkService {
         return juices;
     }
 
-    public void addKaffe(Kaffe kaffe) {
-        kaffesDAO.addKaffe(mapFromKaffe(kaffe));
+    public Kaffe addKaffe(Kaffe kaffe) {
+        KaffeDTO newKaffeDTO = kaffesDAO.addKaffe(mapFromKaffe(kaffe));
+        return mapToKaffe(newKaffeDTO);
     }
 
     public void addMilk(Milk milk) {
