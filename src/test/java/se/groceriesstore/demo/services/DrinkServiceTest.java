@@ -16,7 +16,11 @@ import se.groceriesstore.demo.models.Drink;
 import se.groceriesstore.demo.models.Drinks.Kaffe;
 import se.groceriesstore.demo.models.Drinks.Milk;
 import se.groceriesstore.demo.models.dto.DrinkDTO;
+import se.groceriesstore.demo.models.dto.DrinksDTO.JuiceDTO;
 import se.groceriesstore.demo.models.dto.DrinksDTO.KaffeDTO;
+import se.groceriesstore.demo.models.dto.DrinksDTO.MilkDTO;
+import se.groceriesstore.demo.models.dto.DrinksDTO.SodaDTO;
+import se.groceriesstore.demo.models.dto.FruitDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,23 +123,52 @@ class DrinkServiceTest {
     }
 
     @Test
-    void deleteKaffe() {
+    void deleteKaffe_ShouldInvokeDeleteKaffe() {
+        drinkService.deleteKaffe(2);
+        Mockito.verify(kaffesDAO, Mockito.times(1)).deleteKaffe(2);
     }
 
     @Test
-    void deleteMilk() {
+    void deleteKaffe_ShouldNotInvokeAddKaffe() {
+        drinkService.deleteKaffe(1);
+        Mockito.verify(kaffesDAO, Mockito.times(0)).addKaffe(new KaffeDTO(1, 40, "Skånerost Mörkrost Bryggkaffe", "image/drinks/kaffes/Skanerost-morkrost-bryggkaffe.jpg", "450G"));
     }
 
     @Test
-    void deleteSoda() {
+    void deleteMilk_ShouldInvokeDeleteMilk() {
+        drinkService.deleteMilk(2);
+        Mockito.verify(milkDAO, Mockito.times(1)).deleteMilk(2);
     }
 
     @Test
-    void deleteJuice() {
+    void deleteMilk_ShouldNotInvokeAddMilk() {
+        drinkService.deleteMilk(1);
+        Mockito.verify(milkDAO, Mockito.times(0)).addMilk(new MilkDTO(1, 24, "Getmjölk", "image/drinks/milks/Getmjolk.jpg", "1L"));
     }
 
+    @Test
+    void deleteSoda_ShouldInvokeDeleteSoda() {
+        drinkService.deleteSoda(2);
+        Mockito.verify(sodasDAO, Mockito.times(1)).deleteSoda(2);
+    }
 
+    @Test
+    void deleteSoda_ShouldNotInvokeAddSoda() {
+        drinkService.deleteSoda(1);
+        Mockito.verify(sodasDAO, Mockito.times(0)).addSoda(new SodaDTO(1, 10, "Hallonsoda", "image/drinks/sodas/Hallonsoda.jpg", "1.5L"));
+    }
 
+    @Test
+    void deleteJuice_ShouldInvokeDeleteJuice() {
+        drinkService.deleteJuice(2);
+        Mockito.verify(juicesDAO, Mockito.times(1)).deleteJuice(2);
+    }
+
+    @Test
+    void deleteJuice_ShouldNotInvokeAddJuice() {
+        drinkService.deleteJuice(1);
+        Mockito.verify(juicesDAO, Mockito.times(0)).addJuice(new JuiceDTO(1, 14, "Fruktdryck Päron", "image/drinks/juices/Fruktdryck-paron.jpg", "1.5L"));
+    }
 }
 
 
