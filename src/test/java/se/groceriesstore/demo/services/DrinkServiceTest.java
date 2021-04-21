@@ -1,6 +1,7 @@
 
 package se.groceriesstore.demo.services;
 
+import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +21,7 @@ import se.groceriesstore.demo.models.dto.DrinksDTO.KaffeDTO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 class DrinkServiceTest {
 
@@ -72,6 +74,8 @@ class DrinkServiceTest {
 
         Assertions.assertThat(newKaffe.getId()).isEqualTo(createdKaffe.getId());
     }
+
+
   @Test
     void getDrinks() {
     }
@@ -104,6 +108,15 @@ class DrinkServiceTest {
 
     @Test
     void getKaffeById() {
+        KaffeDTO kaffeDTOfromDB = new KaffeDTO(1, 32, "Arvid Nordqvist");
+        Kaffe expectedKaffe = new Kaffe(1 , 32, "Arvid Nordqvist");
+
+        Mockito.when(kaffesDAO.findKaffeById(1)).thenReturn(Optional.of(kaffeDTOfromDB));
+
+        Kaffe actualKaffe = drinkService.getKaffeById(1);
+
+        Assertions.assertThat(actualKaffe.getId()).isEqualTo(expectedKaffe.getId());
+
     }
 
     @Test
