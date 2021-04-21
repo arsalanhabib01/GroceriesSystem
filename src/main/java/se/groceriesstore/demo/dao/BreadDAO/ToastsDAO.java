@@ -15,8 +15,8 @@ public class ToastsDAO {
         this.repositoryToast = repositoryToast;
     }
 
-    public void addToast(ToastDTO toastDTO) {
-        repositoryToast.save(toastDTO);
+    public ToastDTO addToast(ToastDTO toastDTO) {
+        return repositoryToast.save(toastDTO);
     }
 
     public Iterable<ToastDTO> getAllToasts() {

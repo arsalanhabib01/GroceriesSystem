@@ -1,6 +1,7 @@
 package se.groceriesstore.demo.dao.BreadDAO;
 
 import org.springframework.stereotype.Repository;
+import se.groceriesstore.demo.models.Breads.Baguette;
 import se.groceriesstore.demo.models.dto.BreadsDTO.BaguetteDTO;
 import se.groceriesstore.demo.repository.BreadsRepository.BaguetteRepository;
 
@@ -16,8 +17,8 @@ public class BaguettesDAO {
         this.repositoryBaguette = repositoryBaguette;
     }
 
-    public void addBaguette(BaguetteDTO baguetteDTO) {
-        repositoryBaguette.save(baguetteDTO);
+    public BaguetteDTO addBaguette(BaguetteDTO baguetteDTO) {
+        return repositoryBaguette.save(baguetteDTO);
     }
 
     public Iterable<BaguetteDTO> getAllBaguettes() {

@@ -6,8 +6,10 @@ import se.groceriesstore.demo.dao.BreadDAO.ToastsDAO;
 import se.groceriesstore.demo.models.Bread;
 import se.groceriesstore.demo.models.Breads.Baguette;
 import se.groceriesstore.demo.models.Breads.Toast;
+import se.groceriesstore.demo.models.Drink;
 import se.groceriesstore.demo.models.dto.BreadsDTO.BaguetteDTO;
 import se.groceriesstore.demo.models.dto.BreadsDTO.ToastDTO;
+import se.groceriesstore.demo.models.dto.DrinkDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,13 +55,15 @@ public class BreadService {
         return toasts;
     }
 
-
-    public void addBaguette(Baguette baguette) {
-        baguettesDAO.addBaguette(mapFromBaguette(baguette));
+    public Baguette addBaguette(Baguette baguette) {
+        BaguetteDTO newBaguetteDTO = baguettesDAO.addBaguette(mapFromBaguette(baguette));
+        return mapToBaguette(newBaguetteDTO);
     }
 
-    public void addToast(Toast toast) {
-        toastsDAO.addToast(mapFromToast(toast));
+
+    public Toast addToast(Toast toast) {
+        ToastDTO newToastDTO = toastsDAO.addToast(mapFromToast(toast));
+        return mapToToast(newToastDTO);
     }
 
 
