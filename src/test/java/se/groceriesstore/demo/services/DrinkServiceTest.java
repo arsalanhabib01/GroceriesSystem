@@ -111,7 +111,7 @@ class DrinkServiceTest {
     }
 
     @Test
-    void getKaffeById() {
+    void getKaffeById_ShouldReturnSameId() {
         KaffeDTO kaffeDTOfromDB = new KaffeDTO(1, 32, "Arvid Nordqvist");
         Kaffe expectedKaffe = new Kaffe(1 , 32, "Arvid Nordqvist");
 
