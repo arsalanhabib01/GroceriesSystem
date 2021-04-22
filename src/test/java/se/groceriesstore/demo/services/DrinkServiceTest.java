@@ -111,7 +111,7 @@ class DrinkServiceTest {
         Assertions.assertThat(actualJuice.size()).isEqualTo(expectedJuices.size());
     }
     @Test
-    void getJuiceByI_ShouldReturnSameId() {
+    void getJuiceById_ShouldReturnSameId() {
 
         JuiceDTO juiceDTOFromBD = new JuiceDTO(1,29,"Apelsin Juice");
         Juice expectedJuice = new Juice(1,29,"Apelsin Juice");
