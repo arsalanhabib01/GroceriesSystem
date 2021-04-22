@@ -1,7 +1,6 @@
 
 package se.groceriesstore.demo.services;
 
-import org.assertj.core.api.Assert;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,15 +12,12 @@ import se.groceriesstore.demo.dao.DrinkDAO.KaffesDAO;
 import se.groceriesstore.demo.dao.DrinkDAO.MilksDAO;
 import se.groceriesstore.demo.dao.DrinkDAO.SodasDAO;
 import se.groceriesstore.demo.dao.DrinksDAO;
-import se.groceriesstore.demo.models.Drink;
+import se.groceriesstore.demo.models.Drinks.Juice;
 import se.groceriesstore.demo.models.Drinks.Kaffe;
-import se.groceriesstore.demo.models.Drinks.Milk;
-import se.groceriesstore.demo.models.dto.DrinkDTO;
 import se.groceriesstore.demo.models.dto.DrinksDTO.JuiceDTO;
 import se.groceriesstore.demo.models.dto.DrinksDTO.KaffeDTO;
 import se.groceriesstore.demo.models.dto.DrinksDTO.MilkDTO;
 import se.groceriesstore.demo.models.dto.DrinksDTO.SodaDTO;
-import se.groceriesstore.demo.models.dto.FruitDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +33,7 @@ class DrinkServiceTest {
 
     public DrinkService drinkService;
     public List<KaffeDTO> allKaffe;
+    public List<JuiceDTO> allJuice;
 
 
     @BeforeAll
@@ -54,6 +51,11 @@ class DrinkServiceTest {
         allKaffe = new ArrayList<>();
         allKaffe.add(new KaffeDTO("Mellan Rost",65,"image/drinks/kaffes/mellanrost.jpg","470g"));
         allKaffe.add(new KaffeDTO("Mörk Rost",50,"image/drinks/kaffes/Mörkrost.jpg", "200g"));
+
+        allJuice = new ArrayList<>();
+        allJuice.add(new JuiceDTO("Apelsin Juice",29,"image/drinks/juices/Aplesin-Juice.jpg","250 ml"));
+        allJuice.add(new JuiceDTO("Multivitamin",35,"image/drinks/juices/Multivitamin.jpg","500 ml"));
+
     }
 
     @Test
@@ -68,6 +70,7 @@ class DrinkServiceTest {
         Assertions.assertThat(actualKaffe.size()).isEqualTo(expectedKaffes.size());
     }
 
+
     @Test
     void addKaffe_ShouldAddKaffeAndReturnCorrectId() {
         KaffeDTO kaffeDTOFromDB = new KaffeDTO(1, 65,"Mellan Rost", "image/drinks/kaffes/mellanrost.jpg","470g");
@@ -77,6 +80,11 @@ class DrinkServiceTest {
         Kaffe createdKaffe = drinkService.addKaffe(newKaffe);
 
         Assertions.assertThat(newKaffe.getId()).isEqualTo(createdKaffe.getId());
+    }
+    @Test
+    void addJuice() {
+
+
     }
 
 
@@ -93,22 +101,32 @@ class DrinkServiceTest {
     }
 
     @Test
-    void getAllJuices() {
+    void getAllJuices_ShouldReturnJuices() {
+        List<Juice> expectedJuices = new ArrayList<>();
+        expectedJuices.add(new Juice(1,"Apelsin Juice",29,"image/drinks/juices/Aplesin-Juice.jpg","250 ml"));
+        expectedJuices.add(new Juice(2,"Multivitamin",35,"image/drinks/juices/Multivitamin.jpg","500 ml"));
+
+        Mockito.when(juicesDAO.getAllJuices()).thenReturn(allJuice);
+        List<Juice> actualJuice = drinkService.getAllJuices();
+        Assertions.assertThat(actualJuice.size()).isEqualTo(expectedJuices.size());
     }
+    @Test
+    void getJuiceByI_ShouldReturnSameId() {
 
-
+        JuiceDTO juiceDTOFromBD = new JuiceDTO(1,29,"Apelsin Juice");
+        Juice expectedJuice = new Juice(1,29,"Apelsin Juice");
+        Mockito.when(juicesDAO.findJuiceById(1)).thenReturn(Optional.of(juiceDTOFromBD));
+        Juice actualJuice = drinkService.getJuiceById(1);
+        Assertions.assertThat(actualJuice.getId()).isEqualTo(expectedJuice.getId());
+    }
 
     @Test
     void addMilk() {
     }
 
-    @Test
-    void addSoda() {
-    }
 
-    @Test
-    void addJuice() {
-    }
+
+
 
     @Test
     void getKaffeById_ShouldReturnSameId() {
@@ -123,6 +141,8 @@ class DrinkServiceTest {
 
     }
 
+
+
     @Test
     void getMilkById() {
     }
@@ -131,9 +151,6 @@ class DrinkServiceTest {
     void getSodaById() {
     }
 
-    @Test
-    void getJuiceById() {
-    }
 
     @Test
     void deleteKaffe_ShouldInvokeDeleteKaffe() {

@@ -34,6 +34,12 @@ public class JuiceDTO {
         this.volume = volume;
     }
 
+    public JuiceDTO(Integer id, int price, String name) {
+        this.id = id;
+        this.price = price;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }

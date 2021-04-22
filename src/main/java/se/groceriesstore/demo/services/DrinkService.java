@@ -103,8 +103,9 @@ public class DrinkService {
         sodasDAO.addSoda(mapFromSoda(soda));
     }
 
-    public void addJuice(Juice juice) {
+    public Juice addJuice(Juice juice) {
         juicesDAO.addJuice(mapFromJuice(juice));
+        return juice;
     }
 
 

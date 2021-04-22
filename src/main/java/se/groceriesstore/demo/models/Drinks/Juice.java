@@ -26,6 +26,12 @@ public class Juice extends Drink {
         this.volume = volume;
     }
 
+    public Juice(Integer id, int price, String name) {
+        this.id = id;
+        this.price = price;
+        this.name = name;
+    }
+
     @Override
     public Integer getId() {
         return id;
