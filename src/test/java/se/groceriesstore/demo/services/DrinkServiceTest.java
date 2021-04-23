@@ -83,10 +83,7 @@ class DrinkServiceTest {
     }
     @Test
     void addJuice() {
-
-
     }
-
 
   @Test
     void getDrinks() {
@@ -123,10 +120,6 @@ class DrinkServiceTest {
     @Test
     void addMilk() {
     }
-
-
-
-
 
     @Test
     void getKaffeById_ShouldReturnSameId() {
