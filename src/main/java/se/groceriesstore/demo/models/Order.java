@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Order extends Product{
     private Integer id;
-    private int customer_id;
+    private String customer_id;
     private String time;
     private String date;
     private String status;
@@ -17,7 +17,7 @@ public class Order extends Product{
 
 
     public Order(@JsonProperty("id") Integer id,
-                 @JsonProperty("customer_id") Integer customer_id,
+                 @JsonProperty("customer_id") String customer_id,
                  @JsonProperty("time") String time,
                  @JsonProperty("date") String date,
                  @JsonProperty("status") String status)
@@ -37,11 +37,11 @@ public class Order extends Product{
         this.id = id;
     }
 
-    public int getCustomer_id() {
+    public String getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(int customer_id) {
+    public void setCustomer_id(String customer_id) {
         this.customer_id = customer_id;
     }
 

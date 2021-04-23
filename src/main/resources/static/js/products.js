@@ -2,6 +2,7 @@ let productQuantity = 0;
 let cart = [];
 let sum = 0;
 let obj = JSON.parse(localStorage.getItem("itemStores"));
+let mail;
 
 orderId = 0;
 
@@ -14,7 +15,7 @@ $(document).ready(function() {
     });
 
     $('.buy').click(function() {
-        let mail = $('#customerMail').val();
+        mail = $('#customerMail').val();
         if(ValidateEmail(mail)) {
             postCartToDB();
             postOrderToDB();
@@ -268,9 +269,9 @@ function postOrderToDB () {
     let cYear = currentDate.getFullYear();
 
     $order = {
-        "customer_id": 2,
+        "customer_id": mail,
         "order_id": orderId,
-        "date": currentDate,// cDay + "/" + cMonth + "/" + cYear,
+        "date": cDay + "/" + cMonth + "/" + cYear,
         "status": "PLOCKAS",
         "time": currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds()
      };

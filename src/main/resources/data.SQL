@@ -156,7 +156,7 @@ DROP TABLE orders;
 
 CREATE TABLE orders (
     id SERIAL,
-    customer_id integer,
+    customer_id varchar(255),
     order_id integer,
     time varchar(255),
     date varchar(255),

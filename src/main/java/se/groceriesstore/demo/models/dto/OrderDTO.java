@@ -9,12 +9,12 @@ public class OrderDTO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;
-        private int customer_id;
+        private String customer_id;
         private String time;
         private String date;
         private String status;
 
-    public OrderDTO(Integer id, int customer_id, String time, String date, String status) {
+    public OrderDTO(Integer id, String customer_id, String time, String date, String status) {
         this.id = id;
         this.customer_id = customer_id;
         this.time = time;
@@ -32,11 +32,11 @@ public class OrderDTO {
         this.id = id;
     }
 
-    public int getCustomer_id() {
+    public String getCustomer_id() {
         return customer_id;
     }
 
-    public void setCustomer_id(int customer_id) {
+    public void setCustomer_id(String customer_id) {
         this.customer_id = customer_id;
     }
 
