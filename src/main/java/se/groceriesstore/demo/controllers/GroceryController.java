@@ -166,5 +166,13 @@ public class GroceryController {
     public String newUser() {
         return "newuser";
     }
+
+
+    @RequestMapping("addcart")
+    public String showAddCart(Model model){
+        model.addAttribute("addcart", productService.getCart());
+
+        return "addcart";
+    }
 }
 

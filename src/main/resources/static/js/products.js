@@ -270,7 +270,7 @@ function postOrderToDB () {
     $order = {
         "customer_id": 2,
         "order_id": orderId,
-        "date": cDay + "/" + cMonth + "/" + cYear,
+        "date": currentDate,// cDay + "/" + cMonth + "/" + cYear,
         "status": "PLOCKAS",
         "time": currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds()
      };

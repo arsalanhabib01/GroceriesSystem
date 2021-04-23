@@ -152,14 +152,14 @@ CREATE TABLE carts (
     amount int
 );
 
-DROP TABLE IF EXISTS orders;
+DROP TABLE orders;
 
 CREATE TABLE orders (
     id SERIAL,
     customer_id integer,
     order_id integer,
-    time time,
-    date date,
+    time varchar(255),
+    date varchar(255),
     status varchar(255),
     PRIMARY KEY(id, status)
 
