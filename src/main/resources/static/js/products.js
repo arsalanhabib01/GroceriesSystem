@@ -263,3 +263,11 @@ function postCartToDB () {
         }
 
 }
+
+function postOrderToDB () {
+
+
+}
+
+
+
