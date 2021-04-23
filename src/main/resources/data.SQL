@@ -155,8 +155,8 @@ CREATE TABLE carts (
 DROP TABLE IF EXISTS orders;
 
 CREATE TABLE orders (
-    order_id SERIAL,
-    user_id varchar(255),
+    id SERIAL,
+    customer_id integer,
     time time,
     date date,
     status varchar(255),

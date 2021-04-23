@@ -13,7 +13,7 @@ import se.groceriesstore.demo.services.OrderService;
 
 
 @RestController
-@RequestMapping("/addcart")
+@RequestMapping("/addorder")
 
 public class OrderController {
 

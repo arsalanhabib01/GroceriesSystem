@@ -3,6 +3,8 @@ let cart = [];
 let sum = 0;
 let obj = JSON.parse(localStorage.getItem("itemStores"));
 
+orderId = 0;
+
 $(document).ready(function() {
 
     alreadyExistInCart(obj);
@@ -15,6 +17,7 @@ $(document).ready(function() {
         let mail = $('#customerMail').val();
         if(ValidateEmail(mail)) {
             postCartToDB();
+            postOrderToDB();
         }
         else {
             alert("Mail is invalid");
@@ -226,24 +229,17 @@ function checkIfMoreThanZero(q) {
 }
 
 function postCartToDB () {
+
+    orderId++;
+
     for(let i = 0; i < obj.length; i++) {
 
-
-           /* $order = {
-                "user_id":"test@test.se",
-                "delivery": "true",
-                "courier_id":"1",
-                "time": "NOW();",
-                "date": "NOW();"
-            };*/
-
             $item = {
-                "order_id":"1337",
+                "order_id": orderId,
                 "product_name":obj[i][0],
-                "product_id":"3",
+                "product_id":"0",
                 "amount":obj[i][3]
             };
-
 
             $.ajax({
                 type: 'POST',
@@ -265,6 +261,31 @@ function postCartToDB () {
 }
 
 function postOrderToDB () {
+
+    $order = {
+         "customer_id":"test@test.se",
+         "delivery": "true",
+         "time": "NOW();",
+         "date": "NOW();",
+         "status": "PLOCKAS"
+     };
+
+    $.ajax({
+        type: 'POST',
+        url: '/addorder',
+        headers: {
+            'Accept' : 'application/json',
+            'Content-Type' : 'application/json'
+        },
+        data: JSON.stringify($order),
+        success: function () {
+            alert('Order har lagts')
+        },
+        error: function () {
+            alert('error');
+        }
+    });
+
 
 
 }
