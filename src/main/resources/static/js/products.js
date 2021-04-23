@@ -282,7 +282,7 @@ function postOrderToDB () {
             alert('Order har lagts')
         },
         error: function () {
-            alert('error');
+            alert('error placing order to db');
         }
     });
 
