@@ -160,7 +160,7 @@ CREATE TABLE orders (
     time time,
     date date,
     status varchar(255),
-    PRIMARY KEY(order_id, status)
+    PRIMARY KEY(id, status)
 
 );
 

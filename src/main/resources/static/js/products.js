@@ -250,7 +250,7 @@ function postCartToDB () {
                 },
                 data: JSON.stringify($item),
                 success: function () {
-                    alert('Order har lagts')
+                    alert('Cart added to db')
                 },
                 error: function () {
                     alert('error');
@@ -264,10 +264,9 @@ function postOrderToDB () {
 
     $order = {
          "customer_id":"test@test.se",
-         "delivery": "true",
-         "time": "NOW();",
-         "date": "NOW();",
-         "status": "PLOCKAS"
+        "date": "NOW();",
+        "status": "PLOCKAS",
+         "time": "NOW();"
      };
 
     $.ajax({
