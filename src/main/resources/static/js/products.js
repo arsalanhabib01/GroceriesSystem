@@ -4,7 +4,7 @@ let sum = 0;
 let obj = JSON.parse(localStorage.getItem("itemStores"));
 let mail;
 
-orderId = 0;
+orderId = 1;
 
 $(document).ready(function() {
 
@@ -231,12 +231,10 @@ function checkIfMoreThanZero(q) {
 
 function postCartToDB () {
 
-    orderId++;
-
     for(let i = 0; i < obj.length; i++) {
 
             $item = {
-                "order_id": orderId,
+                "order_id":orderId,
                 "product_name":obj[i][0],
                 "product_id":"0",
                 "amount":obj[i][3]
@@ -263,6 +261,8 @@ function postCartToDB () {
 
 function postOrderToDB () {
 
+    orderId++;
+
     let currentDate = new Date();
     let cDay = currentDate.getDate();
     let cMonth = currentDate.getMonth() + 1;
@@ -270,7 +270,6 @@ function postOrderToDB () {
 
     $order = {
         "customer_id": mail,
-        "order_id": orderId,
         "date": cDay + "/" + cMonth + "/" + cYear,
         "status": "PLOCKAS",
         "time": currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds()
