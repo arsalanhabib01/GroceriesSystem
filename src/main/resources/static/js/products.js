@@ -262,11 +262,17 @@ function postCartToDB () {
 
 function postOrderToDB () {
 
+    let currentDate = new Date();
+    let cDay = currentDate.getDate();
+    let cMonth = currentDate.getMonth() + 1;
+    let cYear = currentDate.getFullYear();
+
     $order = {
-         "customer_id":"test@test.se",
-        "date": "NOW();",
+        "customer_id": 2,
+        "order_id": orderId,
+        "date": cDay + "/" + cMonth + "/" + cYear,
         "status": "PLOCKAS",
-         "time": "NOW();"
+        "time": currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds()
      };
 
     $.ajax({
