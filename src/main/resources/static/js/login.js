@@ -4,23 +4,16 @@ $(function () {
     let $email = $('#email');
     let $address = $('#address');
     let $birthday = $('#birthday');
-    let user;
-    function showUser($user){
 
-        user = {
-            "name": $name.val(),
-            "email":$email.val(),
-            "birthday": $birthday.val(),
-            "address": $address.val()
-        },
+    function showUser($user){
             $user.append(
                 '<tr>' +
-                '<td><span class="name noEdit">' + $user.name + '</span><input class="edit name" ></td>' +
-                '<td><span class="birthday noEdit">' + $user.birthday + ' </span><input class="editBirthday"</td>'+
-                '<td><span class="address noEdit">' + $user.address +   ' </span><input class="editAdress"</td>'+
-                '<td><button class="btn remove" data-id=' + $user.email + '>Ta bort</button></td>' +
-                '<td><button class="btn editUser noEdit " data-id="' + $user.email + '">Ändra</button>' +
-                '<button class="btn saveEdit edit btn-danger loging" data-id="' + $user.email + '">Spara</button>' +
+                '<td><span class="name noEdit">' + $name + '</span><input class="edit name" ></td>' +
+                '<td><span class="birthday noEdit">' + $birthday + ' </span><input class="editBirthday"</td>'+
+                '<td><span class="address noEdit">' + $address +   ' </span><input class="editAdress"</td>'+
+                '<td><button class="btn remove" data-id=' + $email + '>Ta bort</button></td>' +
+                '<td><button class="btn editUser noEdit" data-id="' + $email + '">Ändra</button>' +
+                '<button class="btn saveEdit edit btn-danger loging" data-id="' + $email + '">Spara</button>' +
                 '<button class="btn cancelEdit edit">Avbryt</button></td>' +
                 '</tr>'
             )
@@ -30,8 +23,8 @@ $(function () {
         $.ajax({
             type: 'GET',
             url: '/api/login/',
-            success: function (user) {
-                showUser(user);
+            success: function () {
+                showUser($user);
             },
             error: function () {
                 alert('error GET AJAX');
@@ -49,7 +42,7 @@ $(function () {
 
         });
         $user.delegate('.editUser', 'click', function () {
-            var $row = $(this).closest('tr');
+            let $row = $(this).closest('tr');
             $row.find('input.name').val( $row.find('span.name').html() );
             $row.find('input.birthday').val($row.find('span.birthday').html());
             $row.find('input.address').val($row.find('span.address').html());
@@ -73,11 +66,11 @@ $(function () {
                     'Content-Type' : 'application/json'
                 },
                 data: JSON.stringify($user),
-                success: function (newUser) {
+                success: function () {
                     $row.find('span.name').html($user.name);
                     $row.find('span.birthday').html($user.birthday);
                     $row.find('span.address').html($user.address);
-                    showUser(newUser);
+                    showUser();
                 },
                 error: function () {
                     alert('error PUT AJAX');
