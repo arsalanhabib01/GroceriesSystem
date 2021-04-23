@@ -3,8 +3,9 @@ let cart = [];
 let sum = 0;
 let obj = JSON.parse(localStorage.getItem("itemStores"));
 let mail;
+let total = 0;
 
-orderId = 1;
+orderId = 0;
 
 $(document).ready(function() {
 
@@ -19,10 +20,15 @@ $(document).ready(function() {
         if(ValidateEmail(mail)) {
             postCartToDB();
             postOrderToDB();
+            clearCart();
+            obj = null;
+            localStorage.clear();
+
         }
         else {
             alert("Mail is invalid");
         }
+
     })
 
     $('.add-to-cart').click(function() {
@@ -137,7 +143,7 @@ function ValidateEmail(mail) {
 }
 
 function calculateSum() {
-    let total = 0;
+    total = 0;
     for (let i = 0; i < obj.length; i++) {
         let sumPrice = obj[i][1];
         let sumAmount = obj[i][3];
@@ -220,6 +226,15 @@ function addToCart (name, price, volume, amount) {
                 </div> `)
 }
 
+function clearCart () {
+    $('.theCart').html(``);
+    total = 0;
+    $(".sum").html(`Summa: `);
+    sum = 0;
+    $('.sum').append(` <br> <h3>  Beställningen lyckades.  </h3> `);
+
+}
+
 function checkIfMoreThanZero(q) {
     if (q >= 0) {
         $('#cartcard').css('width', '35vw');
@@ -234,7 +249,7 @@ function postCartToDB () {
     for(let i = 0; i < obj.length; i++) {
 
             $item = {
-                "order_id":orderId,
+                "order_id": orderId,
                 "product_name":obj[i][0],
                 "product_id":"0",
                 "amount":obj[i][3]
@@ -249,7 +264,7 @@ function postCartToDB () {
                 },
                 data: JSON.stringify($item),
                 success: function () {
-                    alert('Cart added to db')
+
                 },
                 error: function () {
                     alert('error');
@@ -257,11 +272,11 @@ function postCartToDB () {
             });
         }
 
+
 }
 
 function postOrderToDB () {
 
-    orderId++;
 
     let currentDate = new Date();
     let cDay = currentDate.getDate();
@@ -284,7 +299,7 @@ function postOrderToDB () {
         },
         data: JSON.stringify($order),
         success: function () {
-            alert('Order har lagts')
+
         },
         error: function () {
             alert('error placing order to db');

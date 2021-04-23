@@ -142,10 +142,20 @@ CREATE TABLE vegetables (
 INSERT INTO vegetables (name, price) VALUES
 ('spenat', 0);
 
+DROP TABLE carts;
+
+CREATE TABLE carts (
+                       id SERIAL PRIMARY KEY,
+                       order_id SERIAL,
+                       product_name varchar(255),
+                       product_id int,
+                       amount int
+                       );
+
 DROP TABLE orders;
 
 CREATE TABLE orders (
-                        id SERIAL,
+                        id SERIAL UNIQUE,
                         customer_id varchar(255),
                         time varchar(255),
                         date varchar(255),
@@ -154,16 +164,7 @@ CREATE TABLE orders (
 
 );
 
-DROP TABLE carts;
 
-CREATE TABLE carts (
-    id SERIAL PRIMARY KEY,
-    order_id int,
-    product_name varchar(255),
-    product_id int,
-    amount int
-    CONSTRAINT FK_BEST_ID foreign key (order_id) references orders(order_id)
-);
 
 
 
