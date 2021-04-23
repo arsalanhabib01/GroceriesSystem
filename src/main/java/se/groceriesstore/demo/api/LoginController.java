@@ -3,9 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import se.groceriesstore.demo.models.User;
 import se.groceriesstore.demo.services.UserService;
-
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/login")
 public class LoginController {
@@ -14,7 +12,6 @@ public class LoginController {
     }
     @Autowired
     UserService userService;
-
     @GetMapping
     public List<User> getAllUsers(){
         return userService.getAllUsers();
@@ -31,13 +28,5 @@ public class LoginController {
     public void deleteUser(@PathVariable("id") String email) {
         userService.deleteUser(email);
     }
-    /*
-    @RequestMapping("login/{id}")
-    public String showUser(@PathVariable("id") Model model, String email){
-        model.addAttribute("login", userService.getUserById(email));
-        return "animals";
-    }
-
-     */
 
 }
