@@ -149,7 +149,7 @@ CREATE TABLE carts (
                        order_id SERIAL,
                        product_name varchar(255),
                        product_id int,
-                       amount int
+       saddxfcgv  zxhj                amount int
                        );
 
 DROP TABLE orders;
